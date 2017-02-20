@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Jumbotron, Button, Grid } from 'react-bootstrap';
+import AppToolbar from '../containers/AppToolbar';
 import './App.css';
 
 class App extends Component {
@@ -28,6 +29,8 @@ class App extends Component {
                 View React Bootstrap Docs
               </Button>
             </p>
+
+            <AppToolbar />
           </Grid>
         </Jumbotron>
       </div>
