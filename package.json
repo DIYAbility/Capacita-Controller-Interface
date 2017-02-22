@@ -4,7 +4,9 @@
   "private": true,
   "devDependencies": {
     "less": "^2.7.2",
-    "react-scripts": "0.9.0"
+    "minifier": "^0.8.1",
+    "react-scripts": "0.9.0",
+    "watch": "^1.0.2"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
@@ -17,10 +19,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run minify:css",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "less": "lessc ./less/bootstrap.less ./public/bootstrap-capacita.css"
+    "less": "lessc ./less/bootstrap.less ./public/bootstrap-capacita.css",
+    "watch:less": "watch 'npm run less' ./less",
+    "minify:css": "minify --output ./build/bootstrap-capacita.css ./public/bootstrap-capacita.css"
   },
   "license": "MIT"
 }

@@ -3158,25 +3158,25 @@ fieldset[disabled] .btn-primary.focus {
 }
 .btn-success {
   color: #fff;
-  background-color: #5cb85c;
+  background-color: green;
   border-color: transparent;
 }
 .btn-success:focus,
 .btn-success.focus {
   color: #fff;
-  background-color: #449d44;
+  background-color: #004d00;
   border-color: rgba(0, 0, 0, 0);
 }
 .btn-success:hover {
   color: #fff;
-  background-color: #449d44;
+  background-color: #004d00;
   border-color: rgba(0, 0, 0, 0);
 }
 .btn-success:active,
 .btn-success.active,
 .open > .dropdown-toggle.btn-success {
   color: #fff;
-  background-color: #449d44;
+  background-color: #004d00;
   border-color: rgba(0, 0, 0, 0);
 }
 .btn-success:active:hover,
@@ -3189,7 +3189,7 @@ fieldset[disabled] .btn-primary.focus {
 .btn-success.active.focus,
 .open > .dropdown-toggle.btn-success.focus {
   color: #fff;
-  background-color: #398439;
+  background-color: #002900;
   border-color: rgba(0, 0, 0, 0);
 }
 .btn-success:active,
@@ -3206,11 +3206,11 @@ fieldset[disabled] .btn-success:focus,
 .btn-success.disabled.focus,
 .btn-success[disabled].focus,
 fieldset[disabled] .btn-success.focus {
-  background-color: #5cb85c;
+  background-color: green;
   border-color: transparent;
 }
 .btn-success .badge {
-  color: #5cb85c;
+  color: green;
   background-color: #fff;
 }
 .btn-info {
@@ -4861,11 +4861,11 @@ a.label:focus {
   background-color: #39853d;
 }
 .label-success {
-  background-color: #5cb85c;
+  background-color: green;
 }
 .label-success[href]:hover,
 .label-success[href]:focus {
-  background-color: #449d44;
+  background-color: #004d00;
 }
 .label-info {
   background-color: #5bc0de;
@@ -5132,7 +5132,7 @@ a.thumbnail.active {
   animation: progress-bar-stripes 2s linear infinite;
 }
 .progress-bar-success {
-  background-color: #5cb85c;
+  background-color: green;
 }
 .progress-striped .progress-bar-success {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
