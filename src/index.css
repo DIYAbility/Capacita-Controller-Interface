@@ -1,1 +1,49 @@
-/* Placeholder... */
+/* Override Booststrap defaults */
+
+/* green #48a94e */
+/* dark green #397d3b */
+/* blue #354a84 */
+/* gray #9b9b9b */
+/* off white #f9fafc */
+
+.glyphicon {
+  margin-right: 8px;
+}
+
+.glyphicon.right {
+  margin-left: 0;
+  margin-left: 8px;
+}
+
+.capacita-app .btn {
+  border: 0;
+  background-image: none;
+  text-shadow: none;
+  box-shadow: none;
+  color: #fff;
+}
+
+.capacita-app .btn:hover,
+.capacita-app .btn:active,
+.capacita-app .btn:focus {
+  color: #fff;
+  background-image: none;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.capacita-app .btn.btn-default {
+  /*background-color: rgba(57, 125, 59, 1);*/
+  /*color: #fff;*/
+}
+
+.capacita-app .btn.btn-default:hover {
+  /*background-color: rgba(57, 125, 59, 0.8);*/
+  /*color: #fff;*/
+}
+
+.capacita-app .btn.btn-default:active,
+.capacita-app .btn.btn-default:focus {
+  /*background-color: rgba(57, 125, 59, 0.5);*/
+  /*color: #fff;*/
+}
