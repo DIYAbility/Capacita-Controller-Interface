@@ -8,10 +8,11 @@
 @import "node_modules/bootstrap/less/variables.less";
 
 // Overwire Bootstrap default variables:
-@import "capacita-less.less";
+@import "variables.less";
 
 // Continue Bootstrap:
 @import "node_modules/bootstrap/less/mixins.less";
+@import "mixins.less";
 
 // Reset and dependencies
 @import "node_modules/bootstrap/less/normalize.less";
@@ -59,3 +60,6 @@
 // Utility classes
 @import "node_modules/bootstrap/less/utilities.less";
 @import "node_modules/bootstrap/less/responsive-utilities.less";
+
+// Overwire:
+@import "override.less";
