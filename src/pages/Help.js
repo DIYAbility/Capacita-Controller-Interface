@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-
+import { PageHeader } from 'react-bootstrap';
 
 class Help extends Component {
 
   render() {
     return (
-      <p>Help</p>
+      <div className="page">
+        <PageHeader>Help</PageHeader>
+      </div>
     );
   }
 }

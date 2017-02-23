@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem, Grid } from 'react-bootstrap';
 import * as actions from '../actions/actions-app';
 import './AppToolbar.css';
@@ -7,7 +6,6 @@ import './AppToolbar.css';
 class AppToolbar extends Component {
 
   render() {
-    console.log(this.props)
     return (
       <Navbar inverse fixedTop className="app-toolbar">
         <Grid>
@@ -24,8 +22,9 @@ class AppToolbar extends Component {
                 Create Layout
               </NavItem>
             </Nav>
-            <Nav pullRight bsStyle="pills">
-              <NavItem eventKey={1} href="#" className="navbar-margin-right">Help</NavItem>
+            <Nav pullRight bsStyle="pills" className="navbar-margin-right">
+              <NavItem eventKey={1} href="/#help">Help</NavItem>
+              <NavItem eventKey={2} href="/#account">Account</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Grid>
@@ -38,8 +37,4 @@ class AppToolbar extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  return state.app;
-}
-
-export default connect(mapStateToProps)(AppToolbar);
+export default AppToolbar;
