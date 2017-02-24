@@ -22,9 +22,9 @@ class AppToolbar extends Component {
                 Create Layout
               </NavItem>
             </Nav>
-            <Nav pullRight bsStyle="pills" className="navbar-margin-right">
+            <Nav pullRight className="navbar-nostyle">
               <NavItem eventKey={1} href="/#help">Help</NavItem>
-              <NavItem eventKey={2} href="/#account">Account</NavItem>
+              <NavItem eventKey={2} href="/#account" className="border-left">Account</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Grid>
