@@ -1,0 +1,7 @@
+.capacita-app > .page {
+  padding: 60px 30px 30px;
+}
+
+.capacita-app > .page > .text {
+  max-width: 640px;
+}
