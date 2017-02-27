@@ -1,0 +1,11 @@
+div.controller.detailed g#detailed { display: block; }
+div.controller.detailed g#wireframe { display: none; }
+div.controller.detailed g#simple { display: none; }
+
+div.controller.wireframe g#detailed { display: none; }
+div.controller.wireframe g#wireframe { display: block; }
+div.controller.wireframe g#simple { display: none; }
+
+div.controller.simple g#detailed { display: none; }
+div.controller.simple g#wireframe { display: none; }
+div.controller.simple g#simple { display: block; }

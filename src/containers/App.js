@@ -17,7 +17,7 @@ class App extends Component {
     console.log(this.props.app.route)
     return (
       <div className="capacita-app">
-        <AppToolbar />
+        <AppToolbar {...this.props} />
         {this.renderPage()}
       </div>
     );
