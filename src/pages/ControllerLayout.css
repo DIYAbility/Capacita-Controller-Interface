@@ -9,3 +9,26 @@ div.controller.wireframe g#simple { display: none; }
 div.controller.simple g#detailed { display: none; }
 div.controller.simple g#wireframe { display: none; }
 div.controller.simple g#simple { display: block; }
+
+div.controller-layout {
+  /*height: 100%;*/
+}
+
+div.artboard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+div.artboard > div {
+  height: 300px;
+}
+
+div.layout {
+  width: 50%;
+  border: 2px solid #ccc;
+}
+
+div.controller {
+  width: 50%;
+}
