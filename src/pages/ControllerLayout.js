@@ -6,8 +6,8 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import DraggableControl from '../components/DraggableControl';
 import LayoutTarget from '../components/LayoutTarget';
 
-// import BackgroundFront from '../components/xbox/BackgroundFront';
-// import BackgroundTop from '../components/xbox/BackgroundTop';
+import SvgXbox from '../components/SvgXbox';
+
 import './ControllerLayout.css';
 
 class ControllerLayout extends Component {
@@ -21,6 +21,10 @@ class ControllerLayout extends Component {
           <LayoutTarget />
 
           <div className="controller detailed">
+            <div>
+              <SvgXbox href="bg-detailed" />
+            </div>
+
             <DraggableControl control="LeftStick" />
           </div>
         </div>
