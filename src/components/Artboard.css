@@ -1,0 +1,45 @@
+div.artboard-content {
+  padding: 120px 0 0 0;
+  position: relative;
+  height: 100%;
+}
+
+div.artboard-scale {
+  position: relative;
+  transform-origin: left top;
+}
+
+div.artboard-content .artboard-section {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+}
+
+div.artboard-content.edit-mode .layout {
+  left: 0;
+  box-sizing: border-box;
+}
+
+div.artboard-content.edit-mode .device-source {
+  left: 50%;
+  border-left: 1px solid #e7e7e7;
+  background-color: #f5f5f5;
+  transform-origin: left top;
+}
+
+div.artboard-content.edit-mode .device-source .artboard-scale {
+  transform-origin: left top;
+}
+
+div.artboard-content.edit-mode .device-source .artboard-scale > .background {
+  display: inline-block;
+}
+
+div.artboard-content.edit-mode [draggable="true"] {
+  position: absolute;
+}
+
+div.svg {
+  overflow: hidden;
+}

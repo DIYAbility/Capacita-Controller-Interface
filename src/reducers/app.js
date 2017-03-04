@@ -1,11 +1,13 @@
 import Immutable from 'seamless-immutable';
 import * as type from '../constants/actions-app';
 import * as page from '../constants/pages';
+import layoutTemplate from '../util/layout-template';
 
 const initialRoute = [page.SIGNIN];
 
 const initialState = Immutable({
   route: initialRoute,
+  activeLayoutIndex: -1,
   layouts: [],
 });
 
@@ -16,7 +18,8 @@ function AppReducer(state = initialState, action) {
       break;
     case type.CREATE_LAYOUT:
       const n = state.layouts.length;
-      state = state.setIn(['layouts', n], `Layout ${n + 1}`);
+      state = state.setIn(['activeLayoutIndex'], n);
+      state = state.setIn(['layouts', n], layoutTemplate());
       break;
     case type.SELECT_LAYOUT:
       break;

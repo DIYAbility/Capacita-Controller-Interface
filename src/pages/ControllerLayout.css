@@ -11,24 +11,28 @@ div.controller.simple g#wireframe { display: none; }
 div.controller.simple g#simple { display: block; }
 
 div.controller-layout {
-  /*height: 100%;*/
-}
-
-div.artboard {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  padding: 60px 0 0 0;
+  box-sizing: border-box;
 }
 
-div.artboard > div {
-  height: 300px;
+div.controller-layout .navbar {
+  background-color: #fff;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
 
-div.layout {
-  width: 50%;
-  border: 2px solid #ccc;
-}
-
-div.controller {
-  width: 50%;
+div.controller-layout .artboard-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 120px 0 0 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }

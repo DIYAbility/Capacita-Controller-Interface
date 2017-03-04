@@ -1,2 +1,1 @@
-export const STICK = 'stick';
-export const BUTTON = 'button';
+export const DEVICE_CONTROL = 'DEVICE_CONTROL';

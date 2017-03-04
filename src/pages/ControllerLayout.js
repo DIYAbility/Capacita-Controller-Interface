@@ -1,36 +1,46 @@
 import React, { Component } from 'react';
-import { PageHeader } from 'react-bootstrap';
-
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-import DraggableControl from '../components/DraggableControl';
-import LayoutTarget from '../components/LayoutTarget';
-
-import SvgXbox from '../components/SvgXbox';
-
+import { connect } from 'react-redux';
+import { Navbar, Nav, NavItem, Grid } from 'react-bootstrap';
+import Artboard from '../components/Artboard';
+import { createLayout } from '../actions/actions-app';
 import './ControllerLayout.css';
 
 class ControllerLayout extends Component {
 
   render() {
     return (
-      <div className="page controller-layout">
-        <PageHeader>Controller Layout</PageHeader>
+      <div className="controller-layout">
+        <Navbar>
+          <Grid>
+            <Navbar.Header>
+              <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
 
-        <div className="artboard">
-          <LayoutTarget />
+            </Navbar.Collapse>
+          </Grid>
+        </Navbar>
 
-          <div className="controller detailed">
-            <div>
-              <SvgXbox href="bg-detailed" />
-            </div>
-
-            <DraggableControl control="LeftStick" />
-          </div>
+        <div className="artboard-container">
+          <Artboard {...this.props} />
         </div>
       </div>
     );
   }
+
+  componentDidMount() {
+    const { layout, dispatch } = this.props;
+    if (!layout) {
+      dispatch(createLayout());
+    }
+  }
 }
 
-export default DragDropContext(HTML5Backend)(ControllerLayout);
+const mapStateToProps = (state, props) => {
+  const { app } = state;
+  return {
+    layout: (app.activeLayoutIndex < 0) ? null : app.layouts[app.activeLayoutIndex]
+  };
+}
+
+export default connect(mapStateToProps)(ControllerLayout);

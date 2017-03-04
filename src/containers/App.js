@@ -14,7 +14,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props.app.route)
     return (
       <div className="capacita-app">
         <AppToolbar {...this.props} />
