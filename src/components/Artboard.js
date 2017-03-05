@@ -11,7 +11,7 @@ class Artboard extends Component {
   render() {
     return (
       <div className="artboard-content edit-mode">
-        <LayoutTarget />
+        <LayoutTarget {...this.props} />
 
         <DeviceSource />
 

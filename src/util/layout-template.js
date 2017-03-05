@@ -1,7 +1,7 @@
 let created = 0;
 
 export const xbox = [
-  { control: 'XboxLeftStick', left: 50, top: 50 },
+  { control: 'XboxLeftStick' },
 ];
 
 export const ps4 = [];

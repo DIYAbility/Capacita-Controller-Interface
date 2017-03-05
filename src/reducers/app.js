@@ -23,6 +23,9 @@ function AppReducer(state = initialState, action) {
       break;
     case type.SELECT_LAYOUT:
       break;
+    case type.MOVE_CONTROL:
+      state = moveControl(state, action.value);
+      break;
     default:
       break;
   }
@@ -34,6 +37,19 @@ function changeAppPage(state, action) {
   const routes = (hash === null) ? initialRoute :
     hash[1].replace(/\/+/g, '/').split('/');
   return state.setIn(['route'], routes);
+}
+
+function moveControl(state, action) {
+  let controlIndex = -1;
+  state.layouts[state.activeLayoutIndex].grid.some((item, index) => {
+    if (item.control === action.control) {
+      controlIndex = index;
+      return true;
+    }
+  });
+  const path = ['layouts', state.activeLayoutIndex, 'grid', controlIndex];
+  state = state.setIn(path, action);
+  return state;
 }
 
 export default AppReducer;

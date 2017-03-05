@@ -1,20 +1,29 @@
 import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import { DropTarget } from 'react-dnd';
 import { DEVICE_CONTROL } from '../constants/drag-types';
 import DraggableControl from '../components/DraggableControl';
+import { moveControl } from '../actions/actions-layout';
 
 const dropTarget = {
   drop(props, monitor, component) {
     const item = monitor.getItem();
-    const offset = monitor.getSourceClientOffset();
-    // TODO: call Redux Action with {item}
-    return {
+    const sourceOffset = monitor.getSourceClientOffset();
+    const clientOffset = monitor.getClientOffset();
+
+    const { x: sx, y: sy } = sourceOffset;
+    const { x: cx, y: cy } = clientOffset;
+    const x = sx - (cx - sx) * item.scale;
+    const y = sy - (cy - sy) * item.scale;
+
+    const dropResult = {
       control: item.control,
-      left: item.left,
-      top: item.top,
-      x: offset.x,
-      y: offset.y,
+      x,
+      y,
+      scale: item.scale,
     };
+    props.dispatch(moveControl(dropResult));
+    return dropResult;
   }
 };
 
@@ -30,7 +39,7 @@ class LayoutTarget extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { items: [] };
+    this.state = { offsetX: 0/0, offsetY: 0/0 };
   }
 
   static propTypes = {
@@ -40,32 +49,34 @@ class LayoutTarget extends Component {
   }
 
   render() {
-    const { connectDropTarget, isOver } = this.props;
-    const style = { borderColor: isOver ? '#ff0' : '#ccc' }
-    return connectDropTarget(
-      <div className="artboard-section layout" style={style}>
+    return this.props.connectDropTarget(
+      <div className="artboard-section layout">
         {this.renderDroppedItems()}
       </div>
     );
   }
 
-  renderDroppedItems() {
-    // console.log(this.props)
-    return null;
-    // const x = drop ? drop.x : 0;
-    // const y = drop ? drop.y : 0;
-    // const style = { position: 'absolute', left: `${x}px`, top: `${y}px` };
-    // return (
-    //   <div style={style}>
-    //     <DraggableControl control="XboxLeftStick" />
-    //   </div>
-    // );
+  componentDidMount() {
+    const rect = findDOMNode(this).getBoundingClientRect();
+    this.setState({ offsetX: rect.left, offsetY: rect.top });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { drop } = this.props;
-    if (drop) {
-      this.state.items.push(drop);
+  renderDroppedItems() {
+    const { layout } = this.props;
+    if (layout && !isNaN(this.state.offsetX)) {
+      return layout.grid.map((item, index) => {
+        if (item.x === undefined) {
+          return null;
+        }
+        const x = item.x - this.state.offsetX;
+        const y = item.y - this.state.offsetY;
+        const style = { position: 'absolute', left: `${x}px`, top: `${y}px` };
+        return (
+          <div style={style} key={index}>
+            <DraggableControl control="XboxLeftStick" />
+          </div>
+        );
+      });
     }
   }
 }
