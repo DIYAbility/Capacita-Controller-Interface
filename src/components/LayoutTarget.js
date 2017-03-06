@@ -70,11 +70,14 @@ class LayoutTarget extends Component {
         }
         const x = item.x - this.state.offsetX;
         const y = item.y - this.state.offsetY;
-        const style = { position: 'absolute', left: `${x}px`, top: `${y}px` };
+        // const style = { position: 'absolute', left: `${x}px`, top: `${y}px` };
         return (
-          <div style={style} key={index}>
-            <DraggableControl control="XboxLeftStick" />
-          </div>
+          <DraggableControl
+            control="XboxLeftStick"
+            left={x}
+            top={y}
+            scale={0}
+            key={index} />
         );
       });
     }

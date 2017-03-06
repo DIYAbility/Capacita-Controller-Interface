@@ -46,6 +46,7 @@ function moveControl(state, action) {
       controlIndex = index;
       return true;
     }
+    return false;
   });
   const path = ['layouts', state.activeLayoutIndex, 'grid', controlIndex];
   state = state.setIn(path, action);
