@@ -8,9 +8,10 @@ import { moveControl, updateTargetOffset } from '../actions/actions-layout';
 const dropTarget = {
   drop(props, monitor, component) {
     const item = monitor.getItem();
+    // Item dragged is scaled to fit inside the device source section, so this
+    // scale must be accounted for in the x and y of a drop position.
     const sourceOffset = monitor.getSourceClientOffset();
     const clientOffset = monitor.getClientOffset();
-
     const { x: sx, y: sy } = sourceOffset;
     const { x: cx, y: cy } = clientOffset;
     const x = sx - (cx - sx) * item.scale;
@@ -19,7 +20,6 @@ const dropTarget = {
       control: item.control,
       x,
       y,
-      scale: item.scale,
     };
     props.dispatch(moveControl(dropResult));
     return dropResult;
@@ -56,39 +56,27 @@ class LayoutTarget extends Component {
   }
 
   componentDidMount() {
+    // Dropped item x and y are relative to the entire document but the items
+    // are dropped onto this particular layer, so dropped item's x and y must
+    // be offset by this layer's x and y.
     const rect = findDOMNode(this).getBoundingClientRect();
-    // this.setState({ offsetX: rect.left, offsetY: rect.top });
     this.props.dispatch(updateTargetOffset(-rect.left, -rect.top))
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   const { layout } = this.props;
-  //   const { nextLayout } = nextProps;
-  //   if (nextLayout) {
-  //     // TODO: account for device change
-  //     nextLayout.grid.forEach((item, index) => {
-  //       if (item.x !== undefined) {
-  //
-  //       }
-  //     });
-  //   }
-  // }
 
   renderDroppedItems() {
     const { layout } = this.props;
     if (layout) {
       return layout.grid.map((item, index) => {
+        // If an item does not have an x value, it has not been configured
+        // by the user yet.
         if (item.x === undefined) {
           return null;
         }
-        // const x = item.x - this.state.offsetX;
-        // const y = item.y - this.state.offsetY;
         return (
           <DraggableControl
             control="XboxLeftStick"
             left={item.x}
             top={item.y}
-            scale={0}
             key={index} />
         );
       });

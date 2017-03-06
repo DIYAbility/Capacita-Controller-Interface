@@ -7,7 +7,7 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 const dragCtrlSource = {
   beginDrag(props, monitor, component) {
     const { control, scale } = props;
-    return { control, scale };
+    return { control, scale: scale || 0 };
   }
 };
 
