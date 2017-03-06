@@ -9,6 +9,7 @@ const initialState = Immutable({
   route: initialRoute,
   activeLayoutIndex: -1,
   layouts: [],
+  targetOffset: { x: 0, y: 0 },
 });
 
 function AppReducer(state = initialState, action) {
@@ -26,6 +27,9 @@ function AppReducer(state = initialState, action) {
     case type.MOVE_CONTROL:
       state = moveControl(state, action.value);
       break;
+    case type.UPDATE_TARGET_OFFSET:
+      state = updateTargetOffset(state, action);
+      break;
     default:
       break;
   }
@@ -39,17 +43,27 @@ function changeAppPage(state, action) {
   return state.setIn(['route'], routes);
 }
 
-function moveControl(state, action) {
+function moveControl(state, move) {
   let controlIndex = -1;
   state.layouts[state.activeLayoutIndex].grid.some((item, index) => {
-    if (item.control === action.control) {
+    if (item.control === move.control) {
       controlIndex = index;
       return true;
     }
     return false;
   });
-  const path = ['layouts', state.activeLayoutIndex, 'grid', controlIndex];
-  state = state.setIn(path, action);
+  if (controlIndex !== -1) {
+    move.x += state.targetOffset.x;
+    move.y += state.targetOffset.y;
+    const path = ['layouts', state.activeLayoutIndex, 'grid', controlIndex];
+    state = state.setIn(path, move);
+  }
+  return state;
+}
+
+function updateTargetOffset(state, action) {
+  state = state.setIn(['targetOffset', 'x'], action.x);
+  state = state.setIn(['targetOffset', 'y'], action.y);
   return state;
 }
 

@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { DropTarget } from 'react-dnd';
 import { DEVICE_CONTROL } from '../constants/drag-types';
 import DraggableControl from '../components/DraggableControl';
-import { moveControl } from '../actions/actions-layout';
+import { moveControl, updateTargetOffset } from '../actions/actions-layout';
 
 const dropTarget = {
   drop(props, monitor, component) {
@@ -15,7 +15,6 @@ const dropTarget = {
     const { x: cx, y: cy } = clientOffset;
     const x = sx - (cx - sx) * item.scale;
     const y = sy - (cy - sy) * item.scale;
-
     const dropResult = {
       control: item.control,
       x,
@@ -58,24 +57,37 @@ class LayoutTarget extends Component {
 
   componentDidMount() {
     const rect = findDOMNode(this).getBoundingClientRect();
-    this.setState({ offsetX: rect.left, offsetY: rect.top });
+    // this.setState({ offsetX: rect.left, offsetY: rect.top });
+    this.props.dispatch(updateTargetOffset(-rect.left, -rect.top))
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   const { layout } = this.props;
+  //   const { nextLayout } = nextProps;
+  //   if (nextLayout) {
+  //     // TODO: account for device change
+  //     nextLayout.grid.forEach((item, index) => {
+  //       if (item.x !== undefined) {
+  //
+  //       }
+  //     });
+  //   }
+  // }
 
   renderDroppedItems() {
     const { layout } = this.props;
-    if (layout && !isNaN(this.state.offsetX)) {
+    if (layout) {
       return layout.grid.map((item, index) => {
         if (item.x === undefined) {
           return null;
         }
-        const x = item.x - this.state.offsetX;
-        const y = item.y - this.state.offsetY;
-        // const style = { position: 'absolute', left: `${x}px`, top: `${y}px` };
+        // const x = item.x - this.state.offsetX;
+        // const y = item.y - this.state.offsetY;
         return (
           <DraggableControl
             control="XboxLeftStick"
-            left={x}
-            top={y}
+            left={item.x}
+            top={item.y}
             scale={0}
             key={index} />
         );
