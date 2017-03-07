@@ -22,7 +22,7 @@ class ControllerLayout extends Component {
         </Navbar>
 
         <div className="artboard-container">
-          <Artboard {...this.props}/>
+          <Artboard {...this.props} view="simple" />
         </div>
       </div>
     );

@@ -61,17 +61,17 @@ class ControlDragLayer extends Component {
     return isDragging ? (
       <div style={constainerStyle}>
         <div style={itemStyle(this.props)}>
-          {this.renderItem(item.control)}
+          {this.renderItem(item)}
         </div>
       </div>
     ) : null;
   }
 
-  renderItem(control) {
-    switch (control) {
+  renderItem(item) {
+    switch (item.control) {
       // case 'XboxLeftStick':
       default:
-        return <XboxLeftStick />;
+        return <XboxLeftStick view={item.view} />;
     }
   }
 }

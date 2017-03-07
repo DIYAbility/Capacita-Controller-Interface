@@ -44,6 +44,7 @@ class LayoutTarget extends Component {
   static propTypes = {
     isOver: PropTypes.bool.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
+    view: PropTypes.string.isRequired,
     drop: PropTypes.object,
   }
 
@@ -64,7 +65,7 @@ class LayoutTarget extends Component {
   }
 
   renderDroppedItems() {
-    const { layout } = this.props;
+    const { layout, view } = this.props;
     if (layout) {
       return layout.grid.map((item, index) => {
         // If an item does not have an x value, it has not been configured
@@ -77,7 +78,8 @@ class LayoutTarget extends Component {
             control="XboxLeftStick"
             left={item.x}
             top={item.y}
-            key={index} />
+            key={index}
+            view={view} />
         );
       });
     }

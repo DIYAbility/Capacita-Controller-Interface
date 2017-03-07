@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import XboxBackgroundDetailed from '../components/xbox/XboxBackgroundDetailed';
 import DraggableControl from '../components/DraggableControl';
@@ -6,6 +6,10 @@ import DraggableControl from '../components/DraggableControl';
 const MARGIN = 30;
 
 class DeviceSource extends Component {
+
+  static propTypes = {
+    view: PropTypes.string.isRequired,
+  }
 
   constructor(props) {
     super(props);
@@ -27,9 +31,9 @@ class DeviceSource extends Component {
       <div className="artboard-section device-source">
         <div className="artboard-scale" style={scaleStyle}>
           <div className="background">
-            <XboxBackgroundDetailed />
+            <XboxBackgroundDetailed view={this.props.view} />
           </div>
-          <DraggableControl control="XboxLeftStick" left={80} top={365} scale={scale} />
+          <DraggableControl control="XboxLeftStick" left={80} top={365} scale={scale} view={this.props.view} />
         </div>
       </div>
     );

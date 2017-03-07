@@ -6,8 +6,8 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 
 const dragCtrlSource = {
   beginDrag(props, monitor, component) {
-    const { control, scale } = props;
-    return { control, scale: scale || 0 };
+    const { control, view, scale } = props;
+    return { control, view, scale: scale || 0 };
   }
 };
 
@@ -25,6 +25,7 @@ class DraggableControl extends Component {
     control: PropTypes.string.isRequired,
     connectDragSource: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
+    view: PropTypes.string.isRequired,
     left: PropTypes.number,
     top: PropTypes.number,
     scale: PropTypes.number,
@@ -47,7 +48,7 @@ class DraggableControl extends Component {
   renderControl() {
     switch (this.props.control) {
       case 'XboxLeftStick':
-        return <XboxLeftStick />;
+        return <XboxLeftStick view={this.props.view} />;
       default:
         return null;
     }
