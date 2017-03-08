@@ -30,6 +30,9 @@ function AppReducer(state = initialState, action) {
     case type.UPDATE_TARGET_OFFSET:
       state = updateTargetOffset(state, action);
       break;
+    case type.CHANGE_LAYOUT_VIEW:
+      state = state.setIn(['layouts', state.activeLayoutIndex, 'view'], action.value);
+      break;
     default:
       break;
   }

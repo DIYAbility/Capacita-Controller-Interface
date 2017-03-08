@@ -7,3 +7,7 @@ export function moveControl(value) {
 export function updateTargetOffset(x, y) {
   return { type: type.UPDATE_TARGET_OFFSET, x, y };
 }
+
+export function changeView(value) {
+  return { type: type.CHANGE_LAYOUT_VIEW, value };
+}

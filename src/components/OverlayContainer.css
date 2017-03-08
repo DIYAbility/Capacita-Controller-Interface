@@ -1,0 +1,14 @@
+.overlay-container {
+  position: absolute;
+  width: 300px;
+  background-color: #fff;
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+  margin: -30px 0 0 36px;
+  z-index: 1000;
+}
+
+.input-row {
+  padding: 12px 16px;
+}

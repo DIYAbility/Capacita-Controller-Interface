@@ -6769,3 +6769,6 @@ button.close {
 .navbar-margin-right {
   margin-right: 30px;
 }
+label {
+  font-weight: normal;
+}

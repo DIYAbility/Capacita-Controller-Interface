@@ -1,8 +1,8 @@
-.capacita-app .app-toolbar {
+.capacita-app .navbar {
   border: 0;
 }
 
-.capacita-app .app-toolbar .container {
+.capacita-app .navbar .container {
   width: auto;
   margin: 0;
   padding: 0;
@@ -15,21 +15,21 @@
   padding: 0 30px;
 }
 
-.capacita-app .app-toolbar ul,
-.capacita-app .app-toolbar li {
+.capacita-app .navbar ul,
+.capacita-app .navbar li {
   height: 60px;
 }
 
-.capacita-app .app-toolbar ul.nav-pills li > * {
+.capacita-app ul.nav-pills li > * {
   margin-top: 12px;
 }
 
-.capacita-app .app-toolbar ul.navbar-nostyle li > * {
+.capacita-app ul.navbar-nostyle li > * {
   height: 100%;
   line-height: 60px;
   padding: 0 30px;
 }
 
-.capacita-app .app-toolbar ul li.border-left {
+.capacita-app .navbar ul li.border-left {
   border-left: 2px solid #397d3b;
 }
