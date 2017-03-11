@@ -1,11 +1,5 @@
 let created = 0;
 
-export const xbox = [
-  { control: 'XboxLeftStick' },
-];
-
-export const ps4 = [];
-
 function getValidDevice(value) {
   switch (value) {
     case 'ps4':
@@ -26,12 +20,13 @@ function getValidView(value) {
 }
 
 function getGrid(device) {
-  switch (device) {
-    case 'ps4':
-      return ps4;
-    default:
-      return xbox;
-  }
+  return {};
+  // switch (device) {
+  //   case 'ps4':
+  //     return ps4;
+  //   default:
+  //     return {};
+  // }
 }
 
 export default function template(options = {}) {

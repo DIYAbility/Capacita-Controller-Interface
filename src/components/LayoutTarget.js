@@ -16,11 +16,7 @@ const dropTarget = {
     const { x: cx, y: cy } = clientOffset;
     const x = sx - (cx - sx) * item.scale;
     const y = sy - (cy - sy) * item.scale;
-    const dropResult = {
-      control: item.control,
-      x,
-      y,
-    };
+    const dropResult = { control: item.control, x, y, index: item.index };
     props.dispatch(moveControl(dropResult));
     return dropResult;
   }
@@ -66,22 +62,25 @@ class LayoutTarget extends Component {
 
   renderDroppedItems() {
     const { layout, view } = this.props;
+    const items = [];
     if (layout) {
-      return layout.grid.map((item, index) => {
-        // If an item does not have an x value, it has not been configured
-        // by the user yet.
-        if (item.x === undefined) {
-          return null;
+      let n = 0;
+      Object.keys(layout.grid).forEach(control => {
+        const item = layout.grid[control];
+        for (let i = 0; i < item.instances.length; i++) {
+          items.push(
+            <DraggableControl
+              control={control}
+              view={view}
+              left={item.instances[i].x}
+              top={item.instances[i].y}
+              key={n++}
+              index={i}
+              />
+          );
         }
-        return (
-          <DraggableControl
-            control="XboxLeftStick"
-            left={item.x}
-            top={item.y}
-            key={index}
-            view={view} />
-        );
       });
+      return items;
     }
   }
 }

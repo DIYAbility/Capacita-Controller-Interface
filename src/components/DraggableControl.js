@@ -6,8 +6,8 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 
 const dragCtrlSource = {
   beginDrag(props, monitor, component) {
-    const { control, view, scale } = props;
-    return { control, view, scale: scale || 0 };
+    const { control, view, scale, index } = props;
+    return { control, view, scale: scale || 0, index };
   }
 };
 
@@ -29,6 +29,7 @@ class DraggableControl extends Component {
     left: PropTypes.number,
     top: PropTypes.number,
     scale: PropTypes.number,
+    index: PropTypes.number,
   }
 
   render() {

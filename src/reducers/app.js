@@ -47,20 +47,20 @@ function changeAppPage(state, action) {
 }
 
 function moveControl(state, move) {
-  let controlIndex = -1;
-  state.layouts[state.activeLayoutIndex].grid.some((item, index) => {
-    if (item.control === move.control) {
-      controlIndex = index;
-      return true;
-    }
-    return false;
-  });
-  if (controlIndex !== -1) {
-    move.x += state.targetOffset.x;
-    move.y += state.targetOffset.y;
-    const path = ['layouts', state.activeLayoutIndex, 'grid', controlIndex];
-    state = state.setIn(path, move);
+  const path = ['layouts', state.activeLayoutIndex, 'grid', move.control];
+  if (state.layouts[state.activeLayoutIndex].grid[move.control] === undefined) {
+    state = state.setIn(path, { control: move.control, instances: [] });
   }
+  path.push('instances');
+  path.push(
+    (move.index === -1) ?
+    state.layouts[state.activeLayoutIndex].grid[move.control].instances.length :
+    move.index
+  );
+  state = state.setIn(path, {
+    x: move.x + state.targetOffset.x,
+    y: move.y + state.targetOffset.y,
+  });
   return state;
 }
 

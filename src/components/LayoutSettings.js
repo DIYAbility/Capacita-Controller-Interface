@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { ControlLabel, FormGroup, Radio } from 'react-bootstrap';
+import { ControlLabel, Radio } from 'react-bootstrap';
 import { changeView } from '../actions/actions-layout';
 
 class LayoutSettings extends Component {
@@ -11,7 +11,6 @@ class LayoutSettings extends Component {
 
   render() {
     const { layout } = this.props;
-    console.log(layout.view)
     return (
       <div>
         <div className="input-row">

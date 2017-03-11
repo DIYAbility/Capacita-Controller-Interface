@@ -33,7 +33,10 @@ class DeviceSource extends Component {
           <div className="background">
             <XboxBackgroundDetailed view={this.props.view} />
           </div>
-          <DraggableControl control="XboxLeftStick" left={80} top={365} scale={scale} view={this.props.view} />
+          <DraggableControl
+            control="XboxLeftStick"
+            left={80} top={365}
+            scale={scale} view={this.props.view} index={-1} />
         </div>
       </div>
     );
