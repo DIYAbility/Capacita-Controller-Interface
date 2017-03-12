@@ -1,13 +1,16 @@
 import React, { Component, PropTypes } from 'react';
-import XboxLeftStick from './xbox/XboxLeftStick';
+import XboxComponents from './xbox/XboxComponents';
 import { DEVICE_CONTROL } from '../constants/drag-types';
 import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
 const dragCtrlSource = {
   beginDrag(props, monitor, component) {
-    const { control, view, scale, index } = props;
-    return { control, view, scale: scale || 0, index };
+    const { control, proxyControl, view, scale, index } = props;
+    return {
+      control: proxyControl || control,
+      view, scale: scale || 0, index
+    };
   }
 };
 
@@ -23,6 +26,7 @@ class DraggableControl extends Component {
 
   static propTypes = {
     control: PropTypes.string.isRequired,
+    proxyControl: PropTypes.string,
     connectDragSource: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
     view: PropTypes.string.isRequired,
@@ -47,12 +51,9 @@ class DraggableControl extends Component {
   }
 
   renderControl() {
-    switch (this.props.control) {
-      case 'XboxLeftStick':
-        return <XboxLeftStick view={this.props.view} />;
-      default:
-        return null;
-    }
+    const { control, view } = this.props;
+    const XboxComponent = XboxComponents[control];
+    return <XboxComponent view={view} />;
   }
 
   componentDidMount() {

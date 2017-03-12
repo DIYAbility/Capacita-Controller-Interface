@@ -27,6 +27,7 @@ class DeviceSource extends Component {
       left: `${offsetX}px`,
       top: `${offsetY}px`,
     };
+    const { view } = this.props;
     return (
       <div className="artboard-section device-source">
         <div className="artboard-scale" style={scaleStyle}>
@@ -36,7 +37,12 @@ class DeviceSource extends Component {
           <DraggableControl
             control="XboxLeftStick"
             left={80} top={365}
-            scale={scale} view={this.props.view} index={-1} />
+            scale={scale} view={view} index={-1} />
+          <DraggableControl
+            control="XboxLeftFrontStick"
+            proxyControl="XboxLeftStick"
+            left={87} top={174}
+            scale={scale} view={view} index={-1} />
         </div>
       </div>
     );
