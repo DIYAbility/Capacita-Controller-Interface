@@ -28,25 +28,25 @@ class DeviceSource extends Component {
       top: `${offsetY}px`,
     };
     const { view } = this.props;
+    const dragCtrlProps = { scale, view, index: -1 };
     return (
       <div className="artboard-section device-source">
         <div className="artboard-scale" style={scaleStyle}>
           <div className="background">
             <XboxBackgroundDetailed view={this.props.view} />
           </div>
-          <DraggableControl
-            control="XboxDUp"
-            left={180} top={456}
-            scale={scale} view={view} index={-1} />
-          <DraggableControl
-            control="XboxLeftStick"
-            left={80} top={365}
-            scale={scale} view={view} index={-1} />
-          <DraggableControl
-            control="XboxLeftStickFront"
-            proxyControl="XboxLeftStick"
-            left={87} top={174}
-            scale={scale} view={view} index={-1} />
+          <DraggableControl control="XboxDUp"
+            left={182} top={455} {...dragCtrlProps} />
+          <DraggableControl control="XboxDDown"
+            left={182} top={511} {...dragCtrlProps}/>
+          <DraggableControl control="XboxDLeft"
+            left={152} top={486} {...dragCtrlProps}/>
+          <DraggableControl control="XboxDRight"
+            left={208} top={486} {...dragCtrlProps}/>
+          <DraggableControl control="XboxLeftStick"
+            left={80} top={365} {...dragCtrlProps} />
+          <DraggableControl control="XboxLeftStickFront" proxyControl="XboxLeftStick"
+            left={87} top={174} {...dragCtrlProps} />
         </div>
       </div>
     );

@@ -4,7 +4,7 @@ import SvgXbox from './SvgXbox';
 export default (props) => {
   return (
     <div className="svg" style={{ width: '26px', height: '32px' }}>
-      <SvgXbox href={`d-up-${props.view}`} x="-220" y="-525" />
+      <SvgXbox href={`d-down-${props.view}`} x="-220" y="-575" />
     </div>
   );
 };
