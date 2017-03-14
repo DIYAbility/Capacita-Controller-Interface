@@ -35,11 +35,15 @@ class DeviceSource extends Component {
             <XboxBackgroundDetailed view={this.props.view} />
           </div>
           <DraggableControl
+            control="XboxDUp"
+            left={180} top={456}
+            scale={scale} view={view} index={-1} />
+          <DraggableControl
             control="XboxLeftStick"
             left={80} top={365}
             scale={scale} view={view} index={-1} />
           <DraggableControl
-            control="XboxLeftFrontStick"
+            control="XboxLeftStickFront"
             proxyControl="XboxLeftStick"
             left={87} top={174}
             scale={scale} view={view} index={-1} />

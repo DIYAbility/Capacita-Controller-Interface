@@ -1,7 +1,9 @@
+import XboxDUp from './XboxDUp';
 import XboxLeftStick from './XboxLeftStick';
-import XboxLeftFrontStick from './XboxLeftFrontStick';
+import XboxLeftStickFront from './XboxLeftStickFront';
 
 export default {
+  XboxDUp,
   XboxLeftStick,
-  XboxLeftFrontStick,
+  XboxLeftStickFront,
 };

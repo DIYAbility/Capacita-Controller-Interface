@@ -1,7 +1,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { DragLayer } from 'react-dnd';
-import XboxLeftStick from './xbox/XboxLeftStick';
+import XboxComponents from './xbox/XboxComponents';
 
 const constainerStyle = {
   position: 'fixed',
@@ -68,11 +68,9 @@ class ControlDragLayer extends Component {
   }
 
   renderItem(item) {
-    switch (item.control) {
-      // case 'XboxLeftStick':
-      default:
-        return <XboxLeftStick view={item.view} />;
-    }
+    const { control, view } = item;
+    const XboxComponent = XboxComponents[control];
+    return <XboxComponent view={view} />;
   }
 }
 
