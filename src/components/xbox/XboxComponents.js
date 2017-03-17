@@ -16,9 +16,16 @@ import XboxX from './XboxX';
 import XboxA from './XboxA';
 import XboxB from './XboxB';
 import XboxY from './XboxY';
+import XboxXFront from './XboxXFront';
+import XboxYFront from './XboxYFront';
+import XboxBFront from './XboxBFront';
+import XboxWirelessEnrollment from './XboxWirelessEnrollment';
 import XboxBumperLeft from './XboxBumperLeft';
 import XboxBumperLeftTop from './XboxBumperLeftTop';
 import XboxTriggerLeft from './XboxTriggerLeft';
+import XboxBumperRight from './XboxBumperRight';
+import XboxBumperRightTop from './XboxBumperRightTop';
+import XboxTriggerRight from './XboxTriggerRight';
 
 export default {
   XboxDUp,
@@ -39,7 +46,14 @@ export default {
   XboxA,
   XboxB,
   XboxY,
+  XboxXFront,
+  XboxYFront,
+  XboxBFront,
+  XboxWirelessEnrollment,
   XboxBumperLeft,
   XboxBumperLeftTop,
   XboxTriggerLeft,
+  XboxBumperRight,
+  XboxBumperRightTop,
+  XboxTriggerRight,
 };

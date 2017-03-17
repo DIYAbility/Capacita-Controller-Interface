@@ -58,7 +58,7 @@ class ControlDragLayer extends Component {
 
   render() {
     const { isDragging, item } = this.props;
-    return isDragging ? (
+    return (isDragging && item.control) ? (
       <div style={constainerStyle}>
         <div style={itemStyle(this.props)}>
           {this.renderItem(item)}
