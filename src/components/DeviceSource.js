@@ -17,6 +17,7 @@ class DeviceSource extends Component {
       scale: 1.0,
       offsetX: 0,
       offsetY: 0,
+      device: null,
     };
   }
 
@@ -29,13 +30,13 @@ class DeviceSource extends Component {
   }
 
   renderSource() {
-    const { scale, offsetX, offsetY } = this.state;
+    const { scale, offsetX, offsetY, device } = this.state;
     const scaleStyle = {
       transform: `scale(${this.state.scale})`,
       left: `${offsetX}px`,
       top: `${offsetY}px`,
     };
-    const { view, device } = this.props.layout;
+    const { view } = this.props.layout;
     const dragCtrlProps = { scale, view, index: -1 };
     switch (device) {
       case 'xbox':
@@ -47,6 +48,10 @@ class DeviceSource extends Component {
     }
   }
 
+  componentWillMount() {
+    this.setState({ device: this.props.layout.device });
+  }
+
   componentDidMount() {
     this.writeScale();
     window.addEventListener('resize', this.writeScale.bind(this));
@@ -54,6 +59,18 @@ class DeviceSource extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.writeScale.bind(this));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps')
+    const d1 = this.props.layout.device;
+    const d2 = nextProps.layout.device;
+    if (d1 !== d2) {
+      setTimeout(() => {
+        this.setState({ device: d2 });
+        this.writeScale();
+      }, 1);
+    }
   }
 
   writeScale() {
