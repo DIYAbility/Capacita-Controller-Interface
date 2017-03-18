@@ -57,7 +57,7 @@ class ControllerLayout extends Component {
   }
 
   renderSettingsOverlay() {
-    return (
+    return this.props.layout ? (
       <Overlay
         show={this.state.settings}
         onHide={() => this.setState({ settings: false })}
@@ -69,7 +69,7 @@ class ControllerLayout extends Component {
           <LayoutSettings {...this.props}/>
         </OverlayContainer>
       </Overlay>
-    );
+    ) : null;
   }
 
   onSettings() {
