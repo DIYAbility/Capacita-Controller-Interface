@@ -62,7 +62,6 @@ class DeviceSource extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps')
     const d1 = this.props.layout.device;
     const d2 = nextProps.layout.device;
     if (d1 !== d2) {
