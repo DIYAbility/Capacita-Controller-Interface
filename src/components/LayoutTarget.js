@@ -40,7 +40,7 @@ class LayoutTarget extends Component {
   static propTypes = {
     isOver: PropTypes.bool.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
-    view: PropTypes.string.isRequired,
+    layout: PropTypes.object.isRequired,
     drop: PropTypes.object,
   }
 
@@ -61,7 +61,7 @@ class LayoutTarget extends Component {
   }
 
   renderDroppedItems() {
-    const { layout, view } = this.props;
+    const { layout } = this.props;
     const items = [];
     if (layout) {
       let n = 0;
@@ -71,7 +71,7 @@ class LayoutTarget extends Component {
           items.push(
             <DraggableControl
               control={control}
-              view={view}
+              view={layout.view}
               left={item.instances[i].x}
               top={item.instances[i].y}
               key={n++}

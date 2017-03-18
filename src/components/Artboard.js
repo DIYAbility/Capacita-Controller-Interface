@@ -9,16 +9,15 @@ import './Artboard.css';
 class Artboard extends Component {
 
   static propTypes = {
-    view: PropTypes.string.isRequired,
+    layout: PropTypes.object.isRequired,
   }
 
   render() {
-    const { view } = this.props;
     return (
       <div className="artboard-content edit-mode">
         <LayoutTarget {...this.props} />
 
-        <DeviceSource view={view} />
+        <DeviceSource {...this.props} />
 
         <ControlDragLayer />
       </div>

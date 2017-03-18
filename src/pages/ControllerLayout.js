@@ -51,7 +51,7 @@ class ControllerLayout extends Component {
     const { layout } = this.props;
     return layout ? (
       <div className="artboard-container">
-        <Artboard {...this.props} view={layout.view} />
+        <Artboard {...this.props} />
       </div>
     ) : null;
   }
