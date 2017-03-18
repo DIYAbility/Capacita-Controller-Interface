@@ -13,7 +13,7 @@ export default class XboxSource extends Component {
   render() {
     const { scaleStyle, dragCtrlProps, view } = this.props;
     return (
-      <div className="artboard-scale" style={scaleStyle}>
+      <div className="artboard-source xbox" style={scaleStyle}>
         <div className="background">
           <XboxBackground view={view} />
         </div>

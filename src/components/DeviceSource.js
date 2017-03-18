@@ -59,7 +59,7 @@ class DeviceSource extends Component {
   writeScale() {
     const thisEl = findDOMNode(this);
     const elRect = thisEl.getBoundingClientRect();
-    const bgEl = thisEl.querySelector('.artboard-scale .background');
+    const bgEl = thisEl.querySelector('.artboard-source .background');
     const margin = MARGIN * 2;
     const elW = elRect.width - margin;
     const elH = elRect.height - margin;

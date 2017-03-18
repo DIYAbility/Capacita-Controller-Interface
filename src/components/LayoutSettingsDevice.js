@@ -19,7 +19,7 @@ class LayoutSettingsDevice extends Component {
             <Radio inline name="controller-device" value="xbox"
               checked={device === 'xbox'}
               onChange={this.onChange.bind(this)}>
-              XBox
+              Xbox
             </Radio>
             {' '}
             <Radio inline name="controller-device" value="ps4"

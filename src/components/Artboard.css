@@ -1,22 +1,10 @@
-div.artboard-content.detailed .detailed { display: block; }
-div.artboard-content.detailed .wireframe { display: none; }
-div.artboard-content.detailed .simple { display: none; }
-
-div.artboard-content.wireframe .detailed { display: none; }
-div.artboard-content.wireframe .wireframe { display: block; }
-div.artboard-content.wireframe .simple { display: none; }
-
-div.artboard-content.simple .detailed { display: none; }
-div.artboard-content.simple .wireframe { display: none; }
-div.artboard-content.simple .simple { display: block; }
-
 div.artboard-content {
   padding: 120px 0 0 0;
   position: relative;
   height: 100%;
 }
 
-div.artboard-scale {
+div.artboard-source {
   position: relative;
   transform-origin: left top;
 }
@@ -40,11 +28,11 @@ div.artboard-content.edit-mode .device-source {
   transform-origin: left top;
 }
 
-div.artboard-content.edit-mode .device-source .artboard-scale {
+div.artboard-content.edit-mode .device-source .artboard-source {
   transform-origin: left top;
 }
 
-div.artboard-content.edit-mode .device-source .artboard-scale > .background {
+div.artboard-content.edit-mode .device-source .artboard-source > .background {
   display: inline-block;
 }
 

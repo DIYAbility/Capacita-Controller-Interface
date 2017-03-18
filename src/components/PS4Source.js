@@ -13,7 +13,7 @@ export default class PS4Source extends Component {
   render() {
     const { scaleStyle, dragCtrlProps, view } = this.props;
     return (
-      <div className="artboard-scale" style={scaleStyle}>
+      <div className="artboard-source ps4" style={scaleStyle}>
         <div className="background">
           <PS4Background view={view} />
         </div>
