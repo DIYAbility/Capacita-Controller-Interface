@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { DragLayer } from 'react-dnd';
 import XboxComponents from './xbox/XboxComponents';
+import './ControlDragLayer.css';
 
 const constainerStyle = {
   position: 'fixed',
@@ -59,9 +60,9 @@ class ControlDragLayer extends Component {
   render() {
     const { isDragging, item } = this.props;
     return (isDragging && item.control) ? (
-      <div style={constainerStyle}>
+      <div style={constainerStyle} className="drag-layer">
         <div style={itemStyle(this.props)}>
-          {this.renderItem(item)}
+          <div className={`${item.control} ${item.view}`} />
         </div>
       </div>
     ) : null;

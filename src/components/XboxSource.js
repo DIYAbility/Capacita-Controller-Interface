@@ -73,6 +73,7 @@ export default class XboxSource extends Component {
           left={385} top={14} {...dragCtrlProps} />
         <DraggableControl control="XboxWirelessEnrollment"
           left={201} top={127} {...dragCtrlProps} />
+        <div className="XboxA detailed" style={{ position: 'absolute', top: '200px', left: '100px' }}/>
       </div>
     );
   }

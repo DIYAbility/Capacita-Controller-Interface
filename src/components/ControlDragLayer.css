@@ -1,0 +1,19 @@
+.drag-layer {
+  outline: 1px solid red;
+}
+
+.artboard-content .XboxA.detailed {
+  background: url('/img/xbox/detailed.png') no-repeat -376px -512px / 475px;
+	width: 43px;
+	height: 43px;
+}
+.artboard-content .XboxA.wirefame {
+  background: url('/img/xbox/wirefame.png') no-repeat -376px -512px / 475px;
+	width: 43px;
+	height: 43px;
+}
+.artboard-content .XboxA.simple {
+  background: url('/img/xbox/simple.png') no-repeat -376px -512px / 475px;
+	width: 43px;
+	height: 43px;
+}
