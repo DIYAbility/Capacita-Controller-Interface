@@ -1,19 +1,100 @@
-.drag-layer {
+.artboard-content .drag-layer {
   outline: 1px solid red;
+  background-repeat: no-repeat;
+  background-size: 475px;
+}
+.artboard-content .drag-layer.detailed {
+  background-image: url('/img/xbox/detailed2x.png');
+}
+.artboard-content .drag-layer.wireframe {
+  background-image: url('/img/xbox/wireframe2x.png');
+}
+.artboard-content .drag-layer.simple {
+  background-image: url('/img/xbox/simple2x.png');
 }
 
-.artboard-content .XboxA.detailed {
-  background: url('/img/xbox/detailed.png') no-repeat -376px -512px / 475px;
-	width: 43px;
-	height: 43px;
+.artboard-content .XboxDUp {
+  background-position: -82px -591px; width: 27px; height: 31px;
 }
-.artboard-content .XboxA.wirefame {
-  background: url('/img/xbox/wirefame.png') no-repeat -376px -512px / 475px;
-	width: 43px;
-	height: 43px;
+.artboard-content .XboxDLeft {
+  background-position: -56px -640px; width: 32px; height: 26px;
 }
-.artboard-content .XboxA.simple {
-  background: url('/img/xbox/simple.png') no-repeat -376px -512px / 475px;
-	width: 43px;
-	height: 43px;
+.artboard-content .XboxDRight {
+  background-position: -103px -640px; width: 32px; height: 26px;
+}
+.artboard-content .XboxDDown {
+  background-position: -82px -681px; width: 27px; height: 31px;
+}
+.artboard-content .XboxDUpFront {
+  background-position: -123px -211px; width: 33px; height: 12px;
+}
+.artboard-content .XboxY {
+  background-position: -377px -441px; width: 42px; height: 42px;
+}
+.artboard-content .XboxX {
+  background-position: -321px -477px; width: 42px; height: 42px;
+}
+.artboard-content .XboxB {
+  background-position: -433px -477px; width: 42px; height: 42px;
+}
+.artboard-content .XboxYFront {
+  background-position: -363px -209px; width: 39px; height: 13px;
+}
+.artboard-content .XboxXFront {
+  background-position: -304px -211px; width: 41px; height: 12px;
+}
+.artboard-content .XboxBFront {
+  background-position: -422px -200px; width: 38px; height: 17px;
+}
+.artboard-content .XboxA {
+  background-position: -377px -513px; width: 42px; height: 42px;
+}
+.artboard-content .XboxStickLeft {
+  background-position: 0px -446px; width: 105px; height: 105px;
+}
+.artboard-content .XboxStickLeftFront {
+  background-position: -39px -215px; width: 62px; height: 38px;
+}
+.artboard-content .XboxStickRight {
+  background-position: -220px -564px; width: 105px; height: 105px;
+}
+.artboard-content .XboxStickRightFront {
+  background-position: -259px -243px; width: 62px; height: 38px;
+}
+.artboard-content .XboxView {
+  background-position: -172px -442px; width: 30px; height: 30px;
+}
+.artboard-content .XboxViewFront {
+  background-position: -169px -211px; width: 25px; height: 9px;
+}
+.artboard-content .XboxXbox {
+  background-position: -197px -373px; width: 52px; height: 52px;
+}
+.artboard-content .XboxMenu {
+  background-position: -248px -442px; width: 30px; height: 30px;
+}
+.artboard-content .XboxMenuFront {
+  background-position: -248px -211px; width: 25px; height: 9px;
+}
+
+.artboard-content .XboxBumperLeft {
+  background-position: -23px -119px; width: 143px; height: 66px;
+}
+.artboard-content .XboxBumperLeftTop {
+  background-position: -34px -350px; width: 121px; height: 49px;
+}
+.artboard-content .XboxBumperRight {
+  background-position: -278px -119px; width: 145px; height: 66px;
+}
+.artboard-content .XboxBumperRightTop {
+  background-position: -291px -350px; width: 120px; height: 49px;
+}
+.artboard-content .XboxTriggerLeft {
+  background-position: -21px 0px; width: 78px; height: 96px;
+}
+.artboard-content .XboxTriggerRight {
+  background-position: -344px 0px; width: 81px; height: 96px;
+}
+.artboard-content .XboxWirelessEnrollment {
+  background-position: -193px -155px; width: 40px; height: 22px;
 }

@@ -37,7 +37,7 @@ class DraggableControl extends Component {
   }
 
   render() {
-    const { connectDragSource, isDragging, left, top } = this.props;
+    const { connectDragSource, isDragging, left, top, control, view } = this.props;
     const style = {
       opacity: isDragging ? 0 : 1,
       left: `${left || 0}px`,
@@ -45,9 +45,10 @@ class DraggableControl extends Component {
     };
     return connectDragSource(
       <div style={style}>
-        {this.renderControl()}
+        <div className={`drag-layer ${control} ${view}`} />
       </div>
     );
+    // {this.renderControl()}
   }
 
   renderControl() {

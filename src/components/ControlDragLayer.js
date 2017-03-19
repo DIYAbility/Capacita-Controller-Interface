@@ -24,10 +24,11 @@ function itemStyle(props) {
   // The source is scaled down but the dragged item is 100% scale, to offset
   // the drag source by the scale so it appears in the correct position under
   // the pointer.
+  const scale = (item.scale === 0) ? 0 : (1 - item.scale);
   const { x: ox, y: oy } = currentOffset;
   const { x: cx, y: cy } = clientOffset;
-  const x = ox - (cx - ox) * item.scale;
-  const y = oy - (cy - oy) * item.scale;
+  const x = ox - (cx - ox) * scale;
+  const y = oy - (cy - oy) * scale;
   const transform = `translate(${x}px, ${y}px)`;
   return {
     transform: transform,
@@ -53,16 +54,16 @@ class ControlDragLayer extends Component {
     isDragging: PropTypes.bool.isRequired,
     currentOffset: PropTypes.shape({
       x: PropTypes.number.isRequired,
-      y: PropTypes.number.isRequired
+      y: PropTypes.number.isRequired,
     }),
   }
 
   render() {
     const { isDragging, item } = this.props;
     return (isDragging && item.control) ? (
-      <div style={constainerStyle} className="drag-layer">
+      <div style={constainerStyle}>
         <div style={itemStyle(this.props)}>
-          <div className={`${item.control} ${item.view}`} />
+          <div className={`drag-layer ${item.control} ${item.view}`} />
         </div>
       </div>
     ) : null;

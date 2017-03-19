@@ -22,7 +22,7 @@ export default class XboxSource extends Component {
         <DraggableControl control="XboxDUpFront" proxyControl="XboxDUp"
           left={170} top={169} {...dragCtrlProps}/>
         <DraggableControl control="XboxDDown"
-          left={182} top={511} {...dragCtrlProps}/>
+          left={182} top={512} {...dragCtrlProps}/>
         <DraggableControl control="XboxDLeft"
           left={152} top={486} {...dragCtrlProps}/>
         <DraggableControl control="XboxDRight"
@@ -73,7 +73,6 @@ export default class XboxSource extends Component {
           left={385} top={14} {...dragCtrlProps} />
         <DraggableControl control="XboxWirelessEnrollment"
           left={201} top={127} {...dragCtrlProps} />
-        <div className="XboxA detailed" style={{ position: 'absolute', top: '200px', left: '100px' }}/>
       </div>
     );
   }

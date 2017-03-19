@@ -12,10 +12,11 @@ const dropTarget = {
     // scale must be accounted for in the x and y of a drop position.
     const sourceOffset = monitor.getSourceClientOffset();
     const clientOffset = monitor.getClientOffset();
+    const scale = (item.scale === 0) ? 0 : (1 - item.scale);
     const { x: sx, y: sy } = sourceOffset;
     const { x: cx, y: cy } = clientOffset;
-    const x = sx - (cx - sx) * item.scale;
-    const y = sy - (cy - sy) * item.scale;
+    const x = sx - (cx - sx) * scale;
+    const y = sy - (cy - sy) * scale;
     const dropResult = { control: item.control, x, y, index: item.index };
     props.dispatch(moveControl(dropResult));
     return dropResult;
