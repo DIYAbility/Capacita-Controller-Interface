@@ -20,7 +20,7 @@ function AppReducer(state = initialState, action) {
     case type.CREATE_LAYOUT:
       const n = state.layouts.length;
       state = state.setIn(['activeLayoutIndex'], n);
-      state = state.setIn(['layouts', n], layoutTemplate());
+      state = state.setIn(['layouts', n], layoutTemplate({ device: 'ps4' }));
       break;
     case type.SELECT_LAYOUT:
       break;

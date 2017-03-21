@@ -1,0 +1,5 @@
+.artboard-content .drag-layer {
+  outline: 1px dotted rgba(255, 0, 0, 0.5);
+  background-repeat: no-repeat;
+  background-size: 475px;
+}

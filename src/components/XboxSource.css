@@ -1,15 +1,10 @@
-.artboard-content .drag-layer {
-  outline: 1px solid red;
-  background-repeat: no-repeat;
-  background-size: 475px;
-}
-.artboard-content .drag-layer.detailed {
+.artboard-content.xbox.detailed .drag-layer {
   background-image: url('/img/xbox/detailed2x.png');
 }
-.artboard-content .drag-layer.wireframe {
+.artboard-content.xbox.wireframe .drag-layer {
   background-image: url('/img/xbox/wireframe2x.png');
 }
-.artboard-content .drag-layer.simple {
+.artboard-content.xbox.simple .drag-layer {
   background-image: url('/img/xbox/simple2x.png');
 }
 

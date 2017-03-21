@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import XboxSource from './XboxSource';
 import PS4Source from './PS4Source';
+import './DeviceSource.css';
 
 const MARGIN = 30;
 

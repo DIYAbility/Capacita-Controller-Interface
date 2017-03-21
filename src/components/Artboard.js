@@ -13,8 +13,10 @@ class Artboard extends Component {
   }
 
   render() {
+    const { view, device } = this.props.layout;
+    const className = `artboard-content edit-mode ${view} ${device}`;
     return (
-      <div className="artboard-content edit-mode">
+      <div className={className}>
         <LayoutTarget {...this.props} />
 
         <DeviceSource {...this.props} />
