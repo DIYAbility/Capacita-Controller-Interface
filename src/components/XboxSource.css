@@ -1,3 +1,21 @@
+.artboard-content.xbox .artboard-source .background {
+  position: absolute;
+  background-size: 100%;
+  width: 528px;
+  height: 662px;
+  left: -2px;
+  top: 0px;
+}
+.artboard-content.xbox.detailed .artboard-source .background {
+  background-image: url('/img/xbox/bg-detailed.png');
+}
+.artboard-content.xbox.wireframe .artboard-source .background {
+  background-image: url('/img/xbox/bg-wireframe.png');
+}
+.artboard-content.xbox.simple .artboard-source .background {
+  background-image: url('/img/xbox/bg-simple.png');
+}
+
 .artboard-content.xbox.detailed .drag-layer {
   background-image: url('/img/xbox/detailed2x.png');
 }

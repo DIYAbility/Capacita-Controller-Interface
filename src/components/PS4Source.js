@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import PS4Background from '../components/ps4/PS4Background';
 import DraggableControl from '../components/DraggableControl';
 import './PS4Source.css';
 
@@ -15,9 +14,7 @@ export default class PS4Source extends Component {
     const { scaleStyle, dragCtrlProps, view } = this.props;
     return (
       <div className="artboard-source" style={scaleStyle}>
-        <div className="background">
-          <PS4Background view={view} />
-        </div>
+        <div className="background" />
         <DraggableControl control="PS4L1"
           left={54} top={5} {...dragCtrlProps} />
         <DraggableControl control="PS4L2"

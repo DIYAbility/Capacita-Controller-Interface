@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import XboxBackground from '../components/xbox/XboxBackground';
 import DraggableControl from '../components/DraggableControl';
 import './XboxSource.css';
 
@@ -15,9 +14,7 @@ export default class XboxSource extends Component {
     const { scaleStyle, dragCtrlProps, view } = this.props;
     return (
       <div className="artboard-source" style={scaleStyle}>
-        <div className="background">
-          <XboxBackground view={view} />
-        </div>
+        <div className="background" />
         <DraggableControl control="XboxDUp"
           left={182} top={455} {...dragCtrlProps} />
         <DraggableControl control="XboxDUpFront" proxyControl="XboxDUp"

@@ -1,3 +1,21 @@
+.artboard-content.ps4 .artboard-source .background {
+  position: absolute;
+  background-size: 100%;
+  width: 534px;
+  height: 636px;
+  left: -4px;
+  top: 14px;
+}
+.artboard-content.ps4.detailed .artboard-source .background {
+  background-image: url('/img/ps4/bg-detailed.png');
+}
+.artboard-content.ps4.wireframe .artboard-source .background {
+  background-image: url('/img/ps4/bg-wireframe.png');
+}
+.artboard-content.ps4.simple .artboard-source .background {
+  background-image: url('/img/ps4/bg-simple.png');
+}
+
 .artboard-content.ps4.detailed .drag-layer {
   background-image: url('/img/ps4/detailed2x.png');
 }

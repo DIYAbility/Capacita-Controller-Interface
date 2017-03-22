@@ -9,9 +9,10 @@ export default (props) => {
   //   left: '-36px',
   // };
   // <img src="tmp/SvgXbox.png" alt="" style={tmpStyle}/>
+  // <SvgPS4 href={`bg-${props.view}`} x="-37" y="-66" />
   return (
     <div className="svg" style={{ width: '528px', height: '664px' }}>
-      <SvgPS4 href={`bg-${props.view}`} x="-37" y="-66" />
+      <img src={`/img/ps4/bg-${props.view}.png`} alt="" />
     </div>
   );
 };
