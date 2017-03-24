@@ -7,11 +7,10 @@ export default class XboxSource extends Component {
   static propTypes = {
     scaleStyle: PropTypes.object.isRequired,
     dragCtrlProps: PropTypes.object.isRequired,
-    view: PropTypes.string.isRequired,
   }
 
   render() {
-    const { scaleStyle, dragCtrlProps, view } = this.props;
+    const { scaleStyle, dragCtrlProps } = this.props;
     return (
       <div className="artboard-source" style={scaleStyle}>
         <div className="background" />

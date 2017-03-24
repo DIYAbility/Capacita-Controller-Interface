@@ -41,9 +41,9 @@ class DeviceSource extends Component {
     const dragCtrlProps = { scale, view, index: -1 };
     switch (device) {
       case 'xbox':
-        return <XboxSource scaleStyle={scaleStyle} dragCtrlProps={dragCtrlProps} view={view} />;
+        return <XboxSource scaleStyle={scaleStyle} dragCtrlProps={dragCtrlProps} />;
       case 'ps4':
-        return <PS4Source scaleStyle={scaleStyle} dragCtrlProps={dragCtrlProps} view={view} />;
+        return <PS4Source scaleStyle={scaleStyle} dragCtrlProps={dragCtrlProps} />;
       default:
         return null;
     }

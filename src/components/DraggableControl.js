@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import XboxComponents from './xbox/XboxComponents';
 import { DEVICE_CONTROL } from '../constants/drag-types';
 import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
@@ -48,13 +47,6 @@ class DraggableControl extends Component {
         <div className={`drag-layer ${control} ${view}`} />
       </div>
     );
-    // {this.renderControl()}
-  }
-
-  renderControl() {
-    const { control, view } = this.props;
-    const XboxComponent = XboxComponents[control];
-    return <XboxComponent view={view} />;
   }
 
   componentDidMount() {
