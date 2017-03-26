@@ -19,7 +19,7 @@ class AppToolbar extends Component {
             <Nav activeKey={1} bsStyle="pills" className="navbar-margin-left">
               <NavItem eventKey={1} href="/#layout" >
                 <span className="glyphicon glyphicon-plus" />
-                Create Layout
+                Create layout
               </NavItem>
             </Nav>
             <Nav pullRight className="navbar-nostyle">

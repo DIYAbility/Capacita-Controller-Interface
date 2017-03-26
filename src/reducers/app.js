@@ -10,6 +10,9 @@ const initialState = Immutable({
   activeLayoutIndex: -1,
   layouts: [],
   targetOffset: { x: 0, y: 0 },
+  ui: {
+    layoutSettings: false,
+  },
 });
 
 function AppReducer(state = initialState, action) {
