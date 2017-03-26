@@ -10,9 +10,7 @@ const initialState = Immutable({
   activeLayoutIndex: -1,
   layouts: [],
   targetOffset: { x: 0, y: 0 },
-  ui: {
-    layoutSettings: false,
-  },
+  editMode: true,
 });
 
 function AppReducer(state = initialState, action) {
@@ -26,6 +24,11 @@ function AppReducer(state = initialState, action) {
       state = state.setIn(['layouts', n], layoutTemplate());
       break;
     case type.SELECT_LAYOUT:
+      break;
+    case type.SAVE_LAYOUT:
+      break;
+    case type.TOGGLE_EDIT_MODE:
+      state = state.set('editMode', action.value);
       break;
     case type.MOVE_CONTROL:
       state = moveControl(state, action.value);

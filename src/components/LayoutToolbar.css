@@ -1,0 +1,23 @@
+.layout-toolbar .container {
+  height: 60px;
+}
+
+.layout-toolbar .edit-mode-button {
+  border-left: 1px solid #e7e7e7;
+}
+
+.layout-toolbar .save-button {
+  margin-right: 16px;
+}
+
+.layout-toolbar li.button a {
+  background: #354A84 !important;
+  color: #fff !important;
+}
+
+.layout-toolbar li.button a:hover,
+.layout-toolbar li.button a:active,
+.layout-toolbar li.button a:focus {
+  background-color: #2a3b6a !important;
+  color: #fff !important;
+}

@@ -35,6 +35,7 @@ function getGrid(device) {
 export default function template(options = {}) {
   const device = getValidDevice(options.device);
   return {
+    id: null,
     name: options.name || `Untitled ${++created}`,
     device,
     view: getValidView(options.view),

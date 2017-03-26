@@ -9,6 +9,7 @@ class ControllerLayout extends Component {
 
   static propTypes = {
     layout: PropTypes.object,
+    editMode: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
 
@@ -22,10 +23,11 @@ class ControllerLayout extends Component {
   }
 
   renderLayoutToolbar() {
-    const { layout, dispatch } = this.props;
+    const { layout, dispatch, editMode } = this.props;
     return (
       <LayoutToolbar
         layout={layout}
+        editMode={editMode}
         dispatch={dispatch}
       />
     );
@@ -51,7 +53,8 @@ class ControllerLayout extends Component {
 const mapStateToProps = (state, props) => {
   const { app } = state;
   return {
-    layout: (app.activeLayoutIndex < 0) ? null : app.layouts[app.activeLayoutIndex]
+    layout: (app.activeLayoutIndex < 0) ? null : app.layouts[app.activeLayoutIndex],
+    editMode: app.editMode,
   };
 }
 

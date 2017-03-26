@@ -1,14 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import { Navbar, Nav, NavItem, Grid, Overlay } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Overlay } from 'react-bootstrap';
+import { toggleEditMode, saveLayout } from '../actions/actions-app';
 import LayoutSettingsDevice from './LayoutSettingsDevice';
 import LayoutSettingsView from './LayoutSettingsView';
 import OverlayContainer from './OverlayContainer';
+import './LayoutToolbar.css';
 
 class LayoutToolbar extends Component {
 
   static propTypes = {
     layout: PropTypes.object,
+    editMode: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
 
@@ -28,25 +31,31 @@ class LayoutToolbar extends Component {
   }
 
   renderNavbar() {
+    const { editMode } = this.props;
     return (
-      <Navbar>
-        <Grid>
-          <Navbar.Header>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav activeKey={0} bsStyle="pills" pullRight>
+      <Navbar className="layout-toolbar">
+        <Navbar.Header>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav activeKey={0} bsStyle="pills" pullRight>
+            {editMode ? (
               <NavItem eventKey={1} onClick={this.onSettingsOn.bind(this)} ref="settings">
                 <span className="glyphicon glyphicon-cog" />
                 Settings
               </NavItem>
-              <NavItem eventKey={2} onClick={this.onEditMode.bind(this)}>
-                <span className="glyphicon glyphicon-edit" />
-                Disable edit mode
+            ) : null}
+            {editMode ? (
+              <NavItem eventKey={2} onClick={this.onSave.bind(this)} className="button save-button">
+                Save
               </NavItem>
-            </Nav>
-          </Navbar.Collapse>
-        </Grid>
+            ) : null}
+            <NavItem eventKey={3} onClick={this.onEditMode.bind(this)} className="edit-mode-button">
+              <span className="glyphicon glyphicon-edit" />
+              {editMode ? 'Disable' : 'Enable' } edit mode
+            </NavItem>
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
     );
   }
@@ -87,8 +96,14 @@ class LayoutToolbar extends Component {
     window.removeEventListener('resize', this.positionSettingsOverlay.bind(this));
   }
 
+  onSave() {
+    const { dispatch, layout } = this.props;
+    dispatch(saveLayout(layout.id));
+  }
+
   onEditMode() {
-    //
+    const value = !this.props.editMode;
+    this.props.dispatch(toggleEditMode(value));
   }
 
   // React-bootstrap bug? Setting `target` should do this, n'est pas?
