@@ -5,10 +5,12 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 
 const dragCtrlSource = {
   beginDrag(props, monitor, component) {
-    const { control, proxyControl, view, scale, index } = props;
+    const { control, proxyControl, view, scale, device } = props;
     return {
       control: proxyControl || control,
-      view, scale: scale || 0, index
+      view,
+      device,
+      scale: scale || 0,
     };
   }
 };

@@ -20,7 +20,10 @@ function getValidView(value) {
 }
 
 function getGrid(device) {
-  return {};
+  return {
+    ps4: [],
+    xbox: [],
+  };
   // switch (device) {
   //   case 'ps4':
   //     return ps4;

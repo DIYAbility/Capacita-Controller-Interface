@@ -17,7 +17,11 @@ const dropTarget = {
     const { x: cx, y: cy } = clientOffset;
     const x = sx - (cx - sx) * scale;
     const y = sy - (cy - sy) * scale;
-    const dropResult = { control: item.control, x, y, index: item.index };
+    const dropResult = {
+      x, y,
+      control: item.control,
+      device: item.device,
+    };
     props.dispatch(moveControl(dropResult));
     return dropResult;
   }
@@ -65,21 +69,16 @@ class LayoutTarget extends Component {
     const { layout } = this.props;
     const items = [];
     if (layout) {
-      let n = 0;
-      Object.keys(layout.grid).forEach(control => {
-        const item = layout.grid[control];
-        for (let i = 0; i < item.instances.length; i++) {
-          items.push(
-            <DraggableControl
-              control={control}
-              view={layout.view}
-              left={item.instances[i].x}
-              top={item.instances[i].y}
-              key={n++}
-              index={i}
-              />
-          );
-        }
+      layout.grid[layout.device].forEach((ctrl, index) => {
+        items.push(
+          <DraggableControl
+            control={ctrl.name}
+            view={layout.view}
+            left={ctrl.x}
+            top={ctrl.y}
+            key={index}
+          />
+        );
       });
       return items;
     }

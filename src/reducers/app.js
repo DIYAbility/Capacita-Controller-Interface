@@ -20,7 +20,7 @@ function AppReducer(state = initialState, action) {
     case type.CREATE_LAYOUT:
       const n = state.layouts.length;
       state = state.setIn(['activeLayoutIndex'], n);
-      state = state.setIn(['layouts', n], layoutTemplate({ device: 'ps4' }));
+      state = state.setIn(['layouts', n], layoutTemplate());
       break;
     case type.SELECT_LAYOUT:
       break;
@@ -50,17 +50,10 @@ function changeAppPage(state, action) {
 }
 
 function moveControl(state, move) {
-  const path = ['layouts', state.activeLayoutIndex, 'grid', move.control];
-  if (state.layouts[state.activeLayoutIndex].grid[move.control] === undefined) {
-    state = state.setIn(path, { control: move.control, instances: [] });
-  }
-  path.push('instances');
-  path.push(
-    (move.index === -1) ?
-    state.layouts[state.activeLayoutIndex].grid[move.control].instances.length :
-    move.index
-  );
-  state = state.setIn(path, {
+  const gridArray = state.layouts[state.activeLayoutIndex].grid[move.device];
+  const gridPath = ['layouts', state.activeLayoutIndex, 'grid', move.device, gridArray.length];
+  state = state.setIn(gridPath, {
+    name: move.control,
     x: move.x + state.targetOffset.x,
     y: move.y + state.targetOffset.y,
   });

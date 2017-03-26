@@ -38,7 +38,7 @@ class DeviceSource extends Component {
       top: `${offsetY}px`,
     };
     const { view } = this.props.layout;
-    const dragCtrlProps = { scale, view, index: -1 };
+    const dragCtrlProps = { scale, view, device };
     switch (device) {
       case 'xbox':
         return <XboxSource scaleStyle={scaleStyle} dragCtrlProps={dragCtrlProps} />;
