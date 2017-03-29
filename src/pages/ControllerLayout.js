@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LayoutToolbar from '../components/LayoutToolbar';
 import Artboard from '../components/Artboard';
+import Playboard from '../components/Playboard';
 import { createLayout } from '../actions/actions-app';
 import './ControllerLayout.css';
 
@@ -17,7 +18,7 @@ class ControllerLayout extends Component {
     return (
       <div className="controller-layout">
         {this.renderLayoutToolbar()}
-        {this.renderArtboard()}
+        {this.renderBoard()}
       </div>
     );
   }
@@ -33,11 +34,12 @@ class ControllerLayout extends Component {
     );
   }
 
-  renderArtboard() {
-    const { layout } = this.props;
+  renderBoard() {
+    const { layout, editMode } = this.props;
     return layout ? (
       <div className="artboard-container">
-        <Artboard {...this.props} />
+        {editMode ? <Artboard {...this.props} /> : null}
+        {!editMode ? <Playboard {...this.props} /> : null}
       </div>
     ) : null;
   }
