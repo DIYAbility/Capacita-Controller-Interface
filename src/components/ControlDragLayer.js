@@ -61,7 +61,7 @@ class ControlDragLayer extends Component {
     return (isDragging && item.control) ? (
       <div style={constainerStyle}>
         <div style={itemStyle(this.props)}>
-          <div className={`drag-layer ${item.control}`} />
+          <div className={`device-source-item drag-layer ${item.control}`} />
         </div>
       </div>
     ) : null;

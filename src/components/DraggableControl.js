@@ -34,7 +34,6 @@ class DraggableControl extends Component {
     left: PropTypes.number,
     top: PropTypes.number,
     scale: PropTypes.number,
-    index: PropTypes.number,
   }
 
   render() {
@@ -46,7 +45,7 @@ class DraggableControl extends Component {
     };
     return connectDragSource(
       <div style={style}>
-        <div className={`drag-layer ${control} ${view}`} />
+        <div className={`device-source-item drag-layer ${control} ${view}`} />
       </div>
     );
   }

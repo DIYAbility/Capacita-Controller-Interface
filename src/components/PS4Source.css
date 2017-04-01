@@ -16,13 +16,13 @@
   background-image: url('/img/ps4/bg-simple.png');
 }
 
-.artboard-content.ps4.detailed .drag-layer {
+.artboard-content.ps4.detailed .device-source-item {
   background-image: url('/img/ps4/detailed2x.png');
 }
-.artboard-content.ps4.wireframe .drag-layer {
+.artboard-content.ps4.wireframe .device-source-item {
   background-image: url('/img/ps4/wireframe2x.png');
 }
-.artboard-content.ps4.simple .drag-layer {
+.artboard-content.ps4.simple .device-source-item {
   background-image: url('/img/ps4/simple2x.png');
 }
 

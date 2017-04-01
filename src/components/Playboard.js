@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import PlayItem from './PlayItem';
 import './Playboard.css';
 
 export default class Playboard extends Component {
@@ -8,12 +9,29 @@ export default class Playboard extends Component {
   }
 
   render() {
-    const { view } = this.props.layout;
-    const className = `playboard ${view}`;
+    const { device, view } = this.props.layout;
     return (
-      <div className={className}>
-
+      <div className={`artboard-content playboard ${device} ${view}`}>
+        {this.renderItems()}
       </div>
     );
+  }
+
+  renderItems() {
+    const layout = this.props.layout;
+    if (layout) {
+      const { grid, device } = layout;
+      return grid[device].map((ctrl, index) => {
+        return (
+          <PlayItem
+            control={ctrl.name}
+            view={layout.view}
+            left={ctrl.x}
+            top={ctrl.y}
+            key={index}
+          />
+        );
+      })
+    }
   }
 }

@@ -16,13 +16,13 @@
   background-image: url('/img/xbox/bg-simple.png');
 }
 
-.artboard-content.xbox.detailed .drag-layer {
+.artboard-content.xbox.detailed .device-source-item {
   background-image: url('/img/xbox/detailed2x.png');
 }
-.artboard-content.xbox.wireframe .drag-layer {
+.artboard-content.xbox.wireframe .device-source-item {
   background-image: url('/img/xbox/wireframe2x.png');
 }
-.artboard-content.xbox.simple .drag-layer {
+.artboard-content.xbox.simple .device-source-item {
   background-image: url('/img/xbox/simple2x.png');
 }
 
