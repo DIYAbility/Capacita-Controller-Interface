@@ -1,0 +1,10 @@
+{
+  "username": "testuser",
+  "firstname": "John",
+  "lastname": "Doe",
+  "layouts": [
+    { "name": "Layout ABC" },
+    { "name": "Layout EFG" },
+    { "name": "Layout HIJ" }
+  ]
+}

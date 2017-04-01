@@ -18,6 +18,9 @@ function AppReducer(state = initialState, action) {
     case type.CHANGE_APP_PAGE:
       state = changeAppPage(state, action);
       break;
+    case type.SIGN_IN:
+      state = signinUser(state, action);
+      break;
     case type.CREATE_LAYOUT:
       const n = state.layouts.length;
       state = state.setIn(['activeLayoutIndex'], n);
@@ -44,6 +47,17 @@ function AppReducer(state = initialState, action) {
       break;
     default:
       break;
+  }
+  return state;
+}
+
+function signinUser(state, action) {
+  if (action.status === 'start') {
+    // Show loading animation ?
+  } else if (action.status === 'error') {
+    console.error(action.error);
+  } else if (action.status === 'complete') {
+    console.log(action.data);
   }
   return state;
 }

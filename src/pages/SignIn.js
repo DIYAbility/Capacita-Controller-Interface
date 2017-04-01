@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { PageHeader } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { PageHeader, Button } from 'react-bootstrap';
+import { signin } from '../actions/actions-user';
 
 class SignIn extends Component {
 
@@ -7,9 +9,18 @@ class SignIn extends Component {
     return (
       <div className="page">
         <PageHeader>Sign In</PageHeader>
+        <Button bsStyle="primary" onClick={this.onSignIn.bind(this)}>Sign In</Button>
       </div>
     );
   }
+
+  onSignIn() {
+    this.props.dispatch(signin());
+  }
 }
 
-export default SignIn;
+const mapStateToProps = (state, props) => {
+  return state;
+}
+
+export default connect(mapStateToProps)(SignIn);
