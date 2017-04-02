@@ -26,6 +26,12 @@ function LayoutReducer(state = initialState, action) {
     case type.CREATE_LAYOUT:
       state = createLayout(state, action);
       break;
+    case type.SAVE_LAYOUT:
+      state = fetchLayout(state, action);
+      break;
+    case type.FETCH_LAYOUT:
+      state = fetchLayout(state, action);
+      break;
     case type.MOVE_CONTROL:
       state = moveControl(state, action.value);
       break;
@@ -50,6 +56,17 @@ function LayoutReducer(state = initialState, action) {
 function createLayout(state, action) {
   state = state.set('data', initialState.data);
   return state.setIn(['data', 'name'], `Untitled ${++created}`);
+}
+
+function fetchLayout(state, action) {
+  if (action.status === 'start') {
+    // We could have a spinner or other animation here.
+  } else if (action.status === 'error') {
+    // Update state.ui to display error message.
+  } else if (action.status === 'complete') {
+    state = state.set('data', action.data);
+  }
+  return state;
 }
 
 function changeEditMode(state, action) {

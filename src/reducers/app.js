@@ -19,8 +19,6 @@ function AppReducer(state = initialState, action) {
       break;
     case type.SELECT_LAYOUT:
       break;
-    case type.SAVE_LAYOUT:
-      break;
     default:
       break;
   }

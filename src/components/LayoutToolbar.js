@@ -97,7 +97,7 @@ class LayoutToolbar extends Component {
 
   onSave() {
     const { dispatch, data } = this.props;
-    dispatch(saveLayout(data.id));
+    dispatch(saveLayout(data));
   }
 
   onEditMode() {

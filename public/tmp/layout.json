@@ -1,11 +1,19 @@
 {
   "id": "saved-layout",
   "name": "Saved Layout",
-  "device": "ps4",
+  "device": "xbox",
   "view": "wireframe",
-  "mode": "play",
+  "mode": "edit",
   "grid": {
-    "xbox": [],
-    "ps4": [],
-  },
+    "xbox": [{
+        "name": "XboxTriggerLeft",
+        "x": 100,
+        "y": 100
+      }, {
+        "name": "XboxBumperLeft",
+        "x": 100,
+        "y": 300
+      }],
+    "ps4": []
+  }
 }

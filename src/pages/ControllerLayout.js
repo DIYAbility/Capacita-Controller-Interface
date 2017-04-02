@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import LayoutToolbar from '../components/LayoutToolbar';
 import Artboard from '../components/Artboard';
 import Playboard from '../components/Playboard';
-import { createLayout } from '../actions/actions-layout';
+import { createLayout, fetchLayout } from '../actions/actions-layout';
 import './ControllerLayout.css';
 
 class ControllerLayout extends Component {
@@ -46,6 +46,7 @@ class ControllerLayout extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(createLayout());
+    // dispatch(fetchLayout());
   }
 }
 

@@ -1,12 +1,30 @@
 import * as type from '../constants/actions-layout';
+import * as api from '../util/api';
 
 export function createLayout() {
   return { type: type.CREATE_LAYOUT };
 }
 
 export function saveLayout(value) {
-  // TODO: Save to firebase. @param value will be null if not saved yet.
-  return { type: type.SAVE_LAYOUT, value };
+  return dispatch => {
+    dispatch({ type: type.SAVE_LAYOUT, status: 'start' });
+    api.saveLayout(value.asMutable({ deep: true })).then(data => {
+      dispatch({ type: type.SAVE_LAYOUT, status: 'complete', data });
+    }).catch(error => {
+      dispatch({ type: type.SAVE_LAYOUT, status: 'error', error });
+    });
+  }
+}
+
+export function fetchLayout(value) {
+  return dispatch => {
+    dispatch({ type: type.FETCH_LAYOUT, status: 'start' });
+    api.fetchLayout(value).then(data => {
+      dispatch({ type: type.FETCH_LAYOUT, status: 'complete', data });
+    }).catch(error => {
+      dispatch({ type: type.FETCH_LAYOUT, status: 'error', error });
+    });
+  }
 }
 
 export function moveControl(value) {
