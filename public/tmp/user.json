@@ -1,7 +1,5 @@
 {
-  "username": "testuser",
-  "firstname": "John",
-  "lastname": "Doe",
+  "name": "John Doe",
   "layouts": [
     { "id": "layout-abc", "name": "Layout ABC", "active": true },
     { "id": "layout-efg", "name": "Layout EFG" },

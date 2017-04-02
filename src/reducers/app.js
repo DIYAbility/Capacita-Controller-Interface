@@ -29,9 +29,9 @@ function signinUser(state, action) {
   if (action.status === 'start') {
     // Show loading animation ?
   } else if (action.status === 'error') {
-    console.error(action.error);
+    // Display error message.
   } else if (action.status === 'complete') {
-    console.log(action.data);
+    state = state.set('user', action.data);
   }
   return state;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PageHeader, Button } from 'react-bootstrap';
-import { signin } from '../actions/actions-user';
+import { signin } from '../actions/actions-app';
 
 class SignIn extends Component {
 
@@ -14,13 +14,27 @@ class SignIn extends Component {
     );
   }
 
+  componentDidMount() {
+    this.changePage(this.props.user);
+  }
+
+  componentWillUpdate(nextProps) {
+    this.changePage(nextProps.user);
+  }
+
+  changePage(user) {
+    if (user) {
+      window.location = '#account';
+    }
+  }
+
   onSignIn() {
     this.props.dispatch(signin());
   }
 }
 
 const mapStateToProps = (state, props) => {
-  return state;
+  return state.app;
 }
 
 export default connect(mapStateToProps)(SignIn);

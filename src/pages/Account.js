@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { PageHeader } from 'react-bootstrap';
 
 class Account extends Component {
@@ -10,6 +11,24 @@ class Account extends Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    this.changePage(this.props.user);
+  }
+
+  componentWillUpdate(nextProps) {
+    this.changePage(nextProps.user);
+  }
+
+  changePage(user) {
+    if (!user) {
+      window.location = '#signin';
+    }
+  }
 }
 
-export default Account;
+const mapStateToProps = (state, props) => {
+  return state.app;
+}
+
+export default connect(mapStateToProps)(Account);

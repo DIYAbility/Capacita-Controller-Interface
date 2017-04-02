@@ -21,3 +21,21 @@ export function fetchLayout(id) {
     });
   });
 }
+
+export function signin(username, password) {
+  return new Promise((resolve, reject) => {
+    fetch('tmp/user.json').then(resp => {
+      if (resp.ok) {
+        resp.json().then(json => {
+          resolve(json);
+        }).catch(error => {
+          reject(error)
+        });
+      } else {
+        reject('Sign in failed.');
+      }
+    }).catch(error => {
+      reject(error);
+    });
+  })
+}

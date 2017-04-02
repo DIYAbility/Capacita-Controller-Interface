@@ -24,11 +24,22 @@ class AppToolbar extends Component {
             </Nav>
             <Nav pullRight className="navbar-nostyle">
               <NavItem eventKey={1} href="/#help">Help</NavItem>
-              <NavItem eventKey={2} href="/#account" className="border-left">Account</NavItem>
+              {this.renderAccount()}
             </Nav>
           </Navbar.Collapse>
         </Grid>
       </Navbar>
+    );
+  }
+
+  renderAccount() {
+    const user = this.props.app.user;
+    const href = user ? '/#account' : '/#signin';
+    const label = user ? `${user.name}` : 'Sign in';
+    return (
+      <NavItem eventKey={2} href={href} className="border-left">
+        {label}
+      </NavItem>
     );
   }
 
