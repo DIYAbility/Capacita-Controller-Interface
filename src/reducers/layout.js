@@ -48,7 +48,7 @@ function LayoutReducer(state = initialState, action) {
 }
 
 function createLayout(state, action) {
-  state = initialState;
+  state = state.set('data', initialState.data);
   return state.setIn(['data', 'name'], `Untitled ${++created}`);
 }
 
@@ -61,7 +61,8 @@ function changeEditMode(state, action) {
 function moveControl(state, move) {
   const offset = state.ui.targetOffset;
   const gridArray = state.data.grid[move.device];
-  const gridPath = ['data', 'grid', move.device, gridArray.length];
+  const index = move.id === undefined ? gridArray.length : move.id;
+  const gridPath = ['data', 'grid', move.device, index];
   state = state.setIn(gridPath, {
     name: move.control,
     x: move.x + offset.x,
@@ -76,8 +77,8 @@ function updateTargetOffset(state, action) {
   return state;
 }
 
-function dirty() {
-
-}
+// function dirty(state) {
+//   return state;
+// }
 
 export default LayoutReducer;

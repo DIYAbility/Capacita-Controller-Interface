@@ -21,6 +21,7 @@ const dropTarget = {
       x, y,
       control: item.control,
       device: item.device,
+      id: item.id,
     };
     props.dispatch(moveControl(dropResult));
     return dropResult;
@@ -72,8 +73,10 @@ class LayoutTarget extends Component {
         <DraggableControl
           control={ctrl.name}
           view={view}
+          device={device}
           left={ctrl.x}
           top={ctrl.y}
+          id={index}
           key={index}
         />
       );

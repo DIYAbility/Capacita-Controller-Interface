@@ -9,7 +9,7 @@ export default class Playboard extends Component {
   }
 
   render() {
-    const { device, view } = this.props.layout;
+    const { device, view } = this.props.data;
     return (
       <div className={`artboard-content playboard ${device} ${view}`}>
         {this.renderItems()}
