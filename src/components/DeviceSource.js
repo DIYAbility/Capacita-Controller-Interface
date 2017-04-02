@@ -9,7 +9,7 @@ const MARGIN = 30;
 class DeviceSource extends Component {
 
   static propTypes = {
-    layout: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -37,7 +37,7 @@ class DeviceSource extends Component {
       left: `${offsetX}px`,
       top: `${offsetY}px`,
     };
-    const { view } = this.props.layout;
+    const { view } = this.props.data;
     const dragCtrlProps = { scale, view, device };
     switch (device) {
       case 'xbox':
@@ -50,7 +50,7 @@ class DeviceSource extends Component {
   }
 
   componentWillMount() {
-    this.setState({ device: this.props.layout.device });
+    this.setState({ device: this.props.data.device });
   }
 
   componentDidMount() {
@@ -63,8 +63,8 @@ class DeviceSource extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const d1 = this.props.layout.device;
-    const d2 = nextProps.layout.device;
+    const d1 = this.props.data.device;
+    const d2 = nextProps.data.device;
     if (d1 !== d2) {
       setTimeout(() => {
         this.setState({ device: d2 });

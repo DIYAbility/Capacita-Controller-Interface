@@ -3,8 +3,8 @@
   "firstname": "John",
   "lastname": "Doe",
   "layouts": [
-    { "name": "Layout ABC" },
-    { "name": "Layout EFG" },
-    { "name": "Layout HIJ" }
+    { "id": "layout-abc", "name": "Layout ABC", "active": true },
+    { "id": "layout-efg", "name": "Layout EFG" },
+    { "id": "layout-hij", "name": "Layout HIJ" }
   ]
 }

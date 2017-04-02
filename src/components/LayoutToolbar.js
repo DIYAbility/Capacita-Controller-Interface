@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Navbar, Nav, NavItem, Overlay } from 'react-bootstrap';
-import { toggleEditMode, saveLayout } from '../actions/actions-app';
+import { changeEditMode, saveLayout } from '../actions/actions-layout';
 import LayoutSettingsDevice from './LayoutSettingsDevice';
 import LayoutSettingsView from './LayoutSettingsView';
 import OverlayContainer from './OverlayContainer';
@@ -10,8 +10,7 @@ import './LayoutToolbar.css';
 class LayoutToolbar extends Component {
 
   static propTypes = {
-    layout: PropTypes.object,
-    editMode: PropTypes.bool.isRequired,
+    data: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
 
@@ -21,17 +20,17 @@ class LayoutToolbar extends Component {
   }
 
   render() {
-    const { layout } = this.props;
-    return layout ? (
+    return (
       <div>
         {this.renderNavbar()}
         {this.renderLayoutSettings()}
       </div>
-    ) : null;
+    );
   }
 
   renderNavbar() {
-    const { editMode } = this.props;
+    const { data } = this.props;
+    const editMode = data.mode === 'edit';
     return (
       <Navbar className="layout-toolbar">
         <Navbar.Header>
@@ -61,7 +60,7 @@ class LayoutToolbar extends Component {
   }
 
   renderLayoutSettings() {
-    const { layout, dispatch } = this.props;
+    const { data, dispatch } = this.props;
     return (
       <Overlay
         show={this.state.settings}
@@ -72,8 +71,8 @@ class LayoutToolbar extends Component {
         target={() => ReactDOM.findDOMNode(this.refs.settings)}
         ref="overlaySettings">
         <OverlayContainer>
-          <LayoutSettingsDevice device={layout.device} dispatch={dispatch} />
-          <LayoutSettingsView view={layout.view} dispatch={dispatch} />
+          <LayoutSettingsDevice device={data.device} dispatch={dispatch} />
+          <LayoutSettingsView view={data.view} dispatch={dispatch} />
         </OverlayContainer>
       </Overlay>
     );
@@ -97,13 +96,13 @@ class LayoutToolbar extends Component {
   }
 
   onSave() {
-    const { dispatch, layout } = this.props;
-    dispatch(saveLayout(layout.id));
+    const { dispatch, data } = this.props;
+    dispatch(saveLayout(data.id));
   }
 
   onEditMode() {
-    const value = !this.props.editMode;
-    this.props.dispatch(toggleEditMode(value));
+    const value = (this.props.data.mode === 'edit') ? 'play' : 'edit';
+    this.props.dispatch(changeEditMode(value));
   }
 
   // React-bootstrap bug? Setting `target` should do this, n'est pas?
@@ -115,7 +114,6 @@ class LayoutToolbar extends Component {
     const triggerRect = trigger.getBoundingClientRect();
     overlay.style.left = (triggerRect.left - containerRect.left) + 'px';
     overlay.style.top = triggerRect.bottom + 'px';
-    // (triggerRect.bottom - containerRect.top) + 'px';
   }
 }
 

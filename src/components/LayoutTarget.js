@@ -45,7 +45,7 @@ class LayoutTarget extends Component {
   static propTypes = {
     isOver: PropTypes.bool.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
-    layout: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
     drop: PropTypes.object,
   }
 
@@ -66,22 +66,18 @@ class LayoutTarget extends Component {
   }
 
   renderDroppedItems() {
-    const { layout } = this.props;
-    const items = [];
-    if (layout) {
-      layout.grid[layout.device].forEach((ctrl, index) => {
-        items.push(
-          <DraggableControl
-            control={ctrl.name}
-            view={layout.view}
-            left={ctrl.x}
-            top={ctrl.y}
-            key={index}
-          />
-        );
-      });
-      return items;
-    }
+    const { grid, device, view } = this.props.data;
+    return grid[device].map((ctrl, index) => {
+      return (
+        <DraggableControl
+          control={ctrl.name}
+          view={view}
+          left={ctrl.x}
+          top={ctrl.y}
+          key={index}
+        />
+      );
+    });
   }
 }
 

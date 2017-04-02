@@ -1,0 +1,11 @@
+{
+  "id": "saved-layout",
+  "name": "Saved Layout",
+  "device": "ps4",
+  "view": "wireframe",
+  "mode": "play",
+  "grid": {
+    "xbox": [],
+    "ps4": [],
+  },
+}

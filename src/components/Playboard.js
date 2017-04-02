@@ -5,7 +5,7 @@ import './Playboard.css';
 export default class Playboard extends Component {
 
   static propTypes = {
-    layout: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
   }
 
   render() {
@@ -18,20 +18,17 @@ export default class Playboard extends Component {
   }
 
   renderItems() {
-    const layout = this.props.layout;
-    if (layout) {
-      const { grid, device } = layout;
-      return grid[device].map((ctrl, index) => {
-        return (
-          <PlayItem
-            control={ctrl.name}
-            view={layout.view}
-            left={ctrl.x}
-            top={ctrl.y}
-            key={index}
-          />
-        );
-      })
-    }
+    const { grid, device, view } = this.props.data;
+    return grid[device].map((ctrl, index) => {
+      return (
+        <PlayItem
+          control={ctrl.name}
+          view={view}
+          left={ctrl.x}
+          top={ctrl.y}
+          key={index}
+        />
+      );
+    })
   }
 }

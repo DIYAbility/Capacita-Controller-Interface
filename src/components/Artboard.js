@@ -9,18 +9,17 @@ import './Artboard.css';
 class Artboard extends Component {
 
   static propTypes = {
-    layout: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired,
   }
 
   render() {
-    const { view, device } = this.props.layout;
+    const { view, device } = this.props.data;
     const className = `artboard-content edit-mode ${view} ${device}`;
     return (
       <div className={className}>
         <LayoutTarget {...this.props} />
-
         <DeviceSource {...this.props} />
-
         <ControlDragLayer />
       </div>
     );

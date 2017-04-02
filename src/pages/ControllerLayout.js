@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import LayoutToolbar from '../components/LayoutToolbar';
 import Artboard from '../components/Artboard';
 import Playboard from '../components/Playboard';
-import { createLayout } from '../actions/actions-app';
+import { createLayout } from '../actions/actions-layout';
 import './ControllerLayout.css';
 
 class ControllerLayout extends Component {
 
   static propTypes = {
-    layout: PropTypes.object,
-    editMode: PropTypes.bool.isRequired,
+    data: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
 
@@ -24,40 +24,33 @@ class ControllerLayout extends Component {
   }
 
   renderLayoutToolbar() {
-    const { layout, dispatch, editMode } = this.props;
+    const { data, dispatch } = this.props;
     return (
       <LayoutToolbar
-        layout={layout}
-        editMode={editMode}
+        data={data}
         dispatch={dispatch}
       />
     );
   }
 
   renderBoard() {
-    const { layout, editMode } = this.props;
-    return layout ? (
+    const editMode = this.props.data.mode === 'edit';
+    return (
       <div className="artboard-container">
         {editMode ? <Artboard {...this.props} /> : null}
         {!editMode ? <Playboard {...this.props} /> : null}
       </div>
-    ) : null;
+    );
   }
 
   componentDidMount() {
-    const { layout, dispatch } = this.props;
-    if (!layout) {
-      dispatch(createLayout());
-    }
+    const { dispatch } = this.props;
+    dispatch(createLayout());
   }
 }
 
 const mapStateToProps = (state, props) => {
-  const { app } = state;
-  return {
-    layout: (app.activeLayoutIndex < 0) ? null : app.layouts[app.activeLayoutIndex],
-    editMode: app.editMode,
-  };
+  return state.layout
 }
 
 export default connect(mapStateToProps)(ControllerLayout);
