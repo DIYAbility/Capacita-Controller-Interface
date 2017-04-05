@@ -68,7 +68,8 @@ class LayoutTarget extends Component {
 
   renderDroppedItems() {
     const { grid, device, view } = this.props.data;
-    return grid[device].map((ctrl, index) => {
+    return Object.keys(grid[device]).map((id, index) => {
+      const ctrl = grid[device][id];
       return (
         <DraggableControl
           control={ctrl.name}
@@ -76,7 +77,7 @@ class LayoutTarget extends Component {
           device={device}
           left={ctrl.x}
           top={ctrl.y}
-          id={index}
+          id={id}
           key={index}
         />
       );

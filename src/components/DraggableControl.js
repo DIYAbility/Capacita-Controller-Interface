@@ -35,7 +35,7 @@ class DraggableControl extends Component {
     left: PropTypes.number,
     top: PropTypes.number,
     scale: PropTypes.number,
-    id: PropTypes.number,
+    id: PropTypes.string,
   }
 
   render() {

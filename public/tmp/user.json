@@ -1,8 +1,8 @@
 {
   "name": "John Doe",
-  "layouts": [
-    { "id": "layout-abc", "name": "Layout ABC", "active": true },
-    { "id": "layout-efg", "name": "Layout EFG" },
-    { "id": "layout-hij", "name": "Layout HIJ" }
-  ]
+  "layouts": {
+    "layout-abc": { "name": "Layout ABC", "active": true },
+    "layout-efg": { "name": "Layout EFG" },
+    "layout-hij": { "name": "Layout HIJ" }
+  }
 }

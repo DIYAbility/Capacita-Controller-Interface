@@ -11,8 +11,8 @@ const initialState = Immutable({
     view: 'detailed',
     mode: 'edit',
     grid: {
-      xbox: [],
-      ps4: [],
+      xbox: {},
+      ps4: {},
     },
   },
   ui: {
@@ -77,15 +77,19 @@ function changeEditMode(state, action) {
 
 function moveControl(state, move) {
   const offset = state.ui.targetOffset;
-  const gridArray = state.data.grid[move.device];
-  const index = move.id === undefined ? gridArray.length : move.id;
-  const gridPath = ['data', 'grid', move.device, index];
+  const id = move.id || getMoveId(move.device, state.data.grid[move.device]);
+  const gridPath = ['data', 'grid', move.device, id];
   state = state.setIn(gridPath, {
     name: move.control,
     x: move.x + offset.x,
     y: move.y + offset.y,
   });
   return state;
+}
+
+function getMoveId(device, moves) {
+  const id = `${device}-${Date.now()}`;
+  return (Object.keys(moves).indexOf(id) === -1) ? id : `${id}x`;
 }
 
 function updateTargetOffset(state, action) {

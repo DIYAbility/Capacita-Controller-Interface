@@ -5,15 +5,18 @@
   "view": "wireframe",
   "mode": "edit",
   "grid": {
-    "xbox": [{
+    "xbox": {
+      "xbox-1": {
         "name": "XboxTriggerLeft",
         "x": 100,
         "y": 100
-      }, {
+      },
+      "xbox-2": {
         "name": "XboxBumperLeft",
         "x": 100,
         "y": 300
-      }],
-    "ps4": []
+      }
+    },
+    "ps4": {}
   }
 }

@@ -19,7 +19,8 @@ export default class Playboard extends Component {
 
   renderItems() {
     const { grid, device, view } = this.props.data;
-    return grid[device].map((ctrl, index) => {
+    return Object.keys(grid[device]).map((id, index) => {
+      const ctrl = grid[device][id];
       return (
         <PlayItem
           control={ctrl.name}
@@ -29,6 +30,6 @@ export default class Playboard extends Component {
           key={index}
         />
       );
-    })
+    });
   }
 }
