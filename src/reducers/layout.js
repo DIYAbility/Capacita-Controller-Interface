@@ -1,5 +1,8 @@
 import Immutable from 'seamless-immutable';
+import { CHANGE_ROUTE } from '../constants/actions-app';
 import * as type from '../constants/actions-layout';
+import { LAYOUT } from '../constants/pages';
+import { isEqual } from 'lodash';
 
 let created = 0;
 
@@ -15,6 +18,7 @@ const initialState = Immutable({
       ps4: {},
     },
   },
+  start: null,
   ui: {
     targetOffset: { x: 0, y: 0 },
     dirty: false,
@@ -23,6 +27,10 @@ const initialState = Immutable({
 
 function LayoutReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_ROUTE:
+      state = (action.route[0] === LAYOUT) ? state :
+        state.setIn(['ui', 'dirty'], false);
+      break;
     case type.CREATE_LAYOUT:
       state = createLayout(state, action);
       break;
@@ -54,8 +62,13 @@ function LayoutReducer(state = initialState, action) {
 }
 
 function createLayout(state, action) {
+  const name = `Untitled ${++created}`;
   state = state.set('data', initialState.data);
-  return state.setIn(['data', 'name'], `Untitled ${++created}`);
+  state = state.set('start', initialState.data);
+  state = state.setIn(['data', 'name'], name);
+  state = state.setIn(['start', 'name'], name);
+  state = state.setIn(['ui', 'dirty'], false);
+  return state;
 }
 
 function fetchLayout(state, action) {
@@ -65,6 +78,8 @@ function fetchLayout(state, action) {
     // Update state.ui to display error message.
   } else if (action.status === 'complete') {
     state = state.set('data', action.data);
+    state = state.set('start', action.data);
+    state = state.setIn(['ui', 'dirty'], false);
   }
   return state;
 }
@@ -84,7 +99,7 @@ function moveControl(state, move) {
     x: move.x + offset.x,
     y: move.y + offset.y,
   });
-  return state;
+  return updateDirty(state);
 }
 
 function getMoveId(device, moves) {
@@ -98,8 +113,10 @@ function updateTargetOffset(state, action) {
   return state;
 }
 
-// function dirty(state) {
-//   return state;
-// }
+function updateDirty(state) {
+  const dirty = !isEqual(state.data, state.start);
+  return state = state.setIn(['ui', 'dirty'], dirty);
+}
+
 
 export default LayoutReducer;

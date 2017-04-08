@@ -11,8 +11,8 @@ const initialState = Immutable({
 
 function AppReducer(state = initialState, action) {
   switch (action.type) {
-    case type.CHANGE_APP_PAGE:
-      state = changeAppPage(state, action);
+    case type.CHANGE_ROUTE:
+      state = state.setIn(['route'], action.route);
       break;
     case type.SIGN_IN:
       state = signinUser(state, action);
@@ -34,13 +34,6 @@ function signinUser(state, action) {
     state = state.set('user', action.data);
   }
   return state;
-}
-
-function changeAppPage(state, action) {
-  const hash = action.value.match(/^[#\/]*(.*)/);
-  const routes = (hash === null) ? initialRoute :
-    hash[1].replace(/\/+/g, '/').split('/');
-  return state.setIn(['route'], routes);
 }
 
 export default AppReducer;

@@ -1,8 +1,8 @@
 import * as type from '../constants/actions-app';
 import * as api from '../util/api';
 
-export function changeAppPage(value) {
-  return { type: type.CHANGE_APP_PAGE, value };
+export function changeRoute(route) {
+  return { type: type.CHANGE_ROUTE, route };
 }
 
 export function signin(username, password) {

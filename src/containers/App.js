@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeAppPage } from '../actions/actions-app.js';
+import ReactSuperSimpleRouter from '../components/ReactSuperSimpleRouter';
 import * as page from '../constants/pages';
+import { changeRoute } from '../actions/actions-app';
 import AppToolbar from '../components/AppToolbar';
 import SignIn from '../pages/SignIn';
 import ControllerLayout from '../pages/ControllerLayout';
@@ -12,19 +13,26 @@ import './App.css';
 
 class App extends Component {
 
-
   render() {
     return (
       <div className="capacita-app">
+        <ReactSuperSimpleRouter
+          route={this.props.app.route}
+          onChange={this.onRouteChange.bind(this)}
+          unsaved={this.props.layout.ui.dirty}
+        />
         <AppToolbar {...this.props} />
         {this.renderPage()}
       </div>
     );
   }
 
+  onRouteChange(route) {
+    this.props.dispatch(changeRoute(route));
+  }
+
   renderPage() {
-    const { app } = this.props;
-    switch (app.route[0]) {
+    switch (this.props.app.route[0]) {
       case page.SIGNIN:
         return <SignIn />;
       case page.LAYOUT:
@@ -36,19 +44,6 @@ class App extends Component {
       default:
         return <NotFound />;
     }
-  }
-
-  componentWillMount() {
-    this.onHashChange();
-    window.addEventListener('hashchange', this.onHashChange.bind(this), false);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('hashchange', this.onHashChange.bind(this), false);
-  }
-
-  onHashChange() {
-    this.props.dispatch(changeAppPage(window.location.hash));
   }
 }
 

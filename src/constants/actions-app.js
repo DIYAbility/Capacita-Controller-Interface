@@ -1,5 +1,5 @@
 
-export const CHANGE_APP_PAGE          = 'CHANGE_APP_PAGE';
+export const CHANGE_ROUTE             = 'CHANGE_ROUTE';
 
 export const SIGN_IN                  = 'SIGN_IN';
 
