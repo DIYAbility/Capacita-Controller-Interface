@@ -5,9 +5,16 @@
   border: 1px solid #e7e7e7;
   border-radius: 5px;
   box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);
-  margin: -15px 0 0 -200px;
+  margin: -15px 0 0 0;
   z-index: 1000;
 }
+
+.overlay-container.settings {
+  margin-left: -200px;
+}
+/*.overlay-container.layouts {
+  margin-left: -100px;
+}*/
 
 .overlay-container .input-row {
   padding: 12px 16px;
@@ -15,13 +22,21 @@
 
 .overlay-container .pointer {
   position: absolute;
-  left: 216px;
+  left: 0;
   top: -6px;
   width: 0;
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid #e7e7e7;
+}
+
+.overlay-container.settings .pointer {
+  left: 216px;
+}
+
+.overlay-container.layouts .pointer {
+  left: 50px;
 }
 
 .overlay-container .pointer .inner {

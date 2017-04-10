@@ -68,9 +68,8 @@ class LayoutToolbar extends Component {
         container={this}
         placement="bottom"
         rootClose={true}
-        target={() => ReactDOM.findDOMNode(this.refs.settings)}
-        ref="overlaySettings">
-        <OverlayContainer>
+        target={() => ReactDOM.findDOMNode(this.refs.settings)}>
+        <OverlayContainer overlay="settings">
           <LayoutSettingsDevice device={data.device} dispatch={dispatch} />
           <LayoutSettingsView view={data.view} dispatch={dispatch} />
         </OverlayContainer>
