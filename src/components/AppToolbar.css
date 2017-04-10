@@ -15,8 +15,8 @@
   padding: 0 30px;
 }
 
-.capacita-app .navbar ul,
-.capacita-app .navbar li {
+.capacita-app .navbar > ul,
+.capacita-app .navbar > ul > li {
   height: 60px;
 }
 

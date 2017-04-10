@@ -49,3 +49,41 @@
   border-right: 5px solid transparent;
   border-bottom: 5px solid #fff;
 }
+
+.overlay-container ul.overlay-items-list {
+  height: auto;
+  padding-left: 0;
+  list-style-type: none;
+  margin: 0;
+}
+.overlay-container ul.overlay-items-list li {
+  /*display: block;*/
+  position: relative;
+  width: 100%;
+}
+
+.overlay-container ul.overlay-items-list li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 0 0 16px;
+}
+
+.overlay-container ul.overlay-items-list li small.device {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  height: 36px;
+  line-height: 36px;
+  text-transform: uppercase;
+}
+
+.overlay-container ul.overlay-items-list li hr {
+  margin: 0 16px;
+}
+
+.overlay-container ul.overlay-items-list li:last-child hr {
+  display: none;
+}

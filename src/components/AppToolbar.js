@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Navbar, Nav, NavItem, Grid, Overlay } from 'react-bootstrap';
 import OverlayContainer from './OverlayContainer';
+import LayoutsOverlayList from './LayoutsOverlayList';
 // import * as actions from '../actions/actions-app';
 import './AppToolbar.css';
 
@@ -66,8 +67,9 @@ class AppToolbar extends Component {
   }
 
   renderLayoutsOverlay() {
-    // const { data, dispatch } = this.props;
-    return (
+    const user = this.props.app.user;
+    const layouts = user ? this.props.app.user.layouts : null;
+    return layouts ? (
       <Overlay
         show={this.state.layouts}
         onHide={this.onLayoutsOff.bind(this)}
@@ -76,10 +78,10 @@ class AppToolbar extends Component {
         target={() => ReactDOM.findDOMNode(this.refs.layouts)}
         ref="overlayLayouts">
         <OverlayContainer overlay="layouts">
-          <p>Hello</p>
+          <LayoutsOverlayList layouts={layouts} />
         </OverlayContainer>
       </Overlay>
-    );
+    ) : null;
   }
 
   onLayoutsOn() {
