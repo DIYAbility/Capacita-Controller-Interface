@@ -1,0 +1,11 @@
+.draggable-control {
+  /* */
+}
+
+.draggable-control .btn {
+  padding: 3px 6px;
+}
+
+.draggable-control .btn .glyphicon {
+  margin: 0;
+}

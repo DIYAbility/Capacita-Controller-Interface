@@ -78,6 +78,7 @@ class LayoutTarget extends Component {
           left={ctrl.x}
           top={ctrl.y}
           id={id}
+          placed={true}
           key={index}
         />
       );

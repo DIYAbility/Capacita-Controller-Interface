@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+import { Button } from 'react-bootstrap';
 import { DEVICE_CONTROL } from '../constants/drag-types';
 import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
+import './DraggableControl.css';
 
 const dragCtrlSource = {
   beginDrag(props, monitor, component) {
@@ -36,6 +38,7 @@ class DraggableControl extends Component {
     top: PropTypes.number,
     scale: PropTypes.number,
     id: PropTypes.string,
+    placed: PropTypes.bool,
   }
 
   render() {
@@ -44,12 +47,30 @@ class DraggableControl extends Component {
       opacity: isDragging ? 0 : 1,
       left: `${left || 0}px`,
       top: `${top || 0}px`,
+      textAlign: 'center',
     };
     return connectDragSource(
-      <div style={style}>
+      <div style={style} className="draggable-control">
         <div className={`device-source-item drag-layer ${control} ${view}`} />
+        {this.renderButton()}
       </div>
     );
+  }
+
+  renderButton() {
+    const { placed } = this.props;
+    if (placed) {
+      return (
+        <Button className="btn-info" onClick={this.onInfoActivate.bind(this)}>
+          <span className="glyphicon glyphicon-info-sign no-margin" />
+        </Button>
+      );
+    }
+    return null;
+  }
+
+  onInfoActivate(event) {
+    console.log(`INFO: ${this.props.id}`);
   }
 
   componentDidMount() {
