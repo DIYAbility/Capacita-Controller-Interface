@@ -1,3 +1,10 @@
+.playboard {
+  /* Assumes the board itself takes up 50% of the window width since the
+     layout board takes up 50%. */
+  margin-left: 25%;
+  overflow: visible;
+}
+
 .playboard .play-item {
   position: absolute;
 }
