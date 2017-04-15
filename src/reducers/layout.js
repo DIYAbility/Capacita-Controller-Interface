@@ -40,6 +40,9 @@ function LayoutReducer(state = initialState, action) {
     case type.FETCH_LAYOUT:
       state = fetchLayout(state, action);
       break;
+    case type.CHANGE_NAME:
+      state = state.setIn(['data', 'name'], action.value);
+      break;
     case type.MOVE_CONTROL:
       state = moveControl(state, action.value);
       break;

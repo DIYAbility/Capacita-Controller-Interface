@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Navbar, Nav, NavItem, Overlay } from 'react-bootstrap';
 import { changeEditMode, saveLayout } from '../actions/actions-layout';
+import LayoutTitle from './LayoutTitle';
 import LayoutSettingsDevice from './LayoutSettingsDevice';
 import LayoutSettingsView from './LayoutSettingsView';
 import OverlayContainer from './OverlayContainer';
@@ -34,6 +35,7 @@ class LayoutToolbar extends Component {
     return (
       <Navbar className="layout-toolbar">
         <Navbar.Header>
+          <LayoutTitle {...this.props} />
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>

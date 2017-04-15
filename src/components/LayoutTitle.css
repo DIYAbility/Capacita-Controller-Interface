@@ -1,0 +1,18 @@
+.layout-toolbar .layout-title {
+  float: left;
+  padding: 10px 0 0 30px;
+}
+
+.layout-toolbar .layout-title small {
+  color: #777;
+  white-space: nowrap;
+}
+
+.layout-toolbar .layout-title h5 {
+  white-space: nowrap;
+  margin: 0;
+}
+
+.layout-toolbar .layout-title input[type="text"] {
+  display: block;
+}

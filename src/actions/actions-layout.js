@@ -27,6 +27,10 @@ export function fetchLayout(value) {
   }
 }
 
+export function changeName(value) {
+  return { type: type.CHANGE_NAME, value };
+}
+
 export function moveControl(value) {
   return { type: type.MOVE_CONTROL, value };
 }
