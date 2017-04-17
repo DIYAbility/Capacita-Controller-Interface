@@ -1,5 +1,6 @@
 {
   "name": "John Doe",
+  "image": null,
   "layouts": {
     "layout-abc": { "name": "Layout ABC", "device": "xbox", "active": true },
     "layout-efg": { "name": "Layout EFG", "device": "xbox" },
