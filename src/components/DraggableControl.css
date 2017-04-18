@@ -9,3 +9,8 @@
 .draggable-control .btn .glyphicon {
   margin: 0;
 }
+
+.draggable-control .btn.editing {
+  background: #354A84 !important;
+  color: #fff !important;
+}

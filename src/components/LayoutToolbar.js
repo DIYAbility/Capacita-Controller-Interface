@@ -110,11 +110,12 @@ class LayoutToolbar extends Component {
   positionSettingsOverlay() {
     const thisEl = ReactDOM.findDOMNode(this);
     const trigger = ReactDOM.findDOMNode(this.refs.settings);
-    const overlay = thisEl.querySelector('.overlay-container');
+    const overlay = thisEl.querySelector('.overlay-container.settings');
     const containerRect = thisEl.getBoundingClientRect();
     const triggerRect = trigger.getBoundingClientRect();
     overlay.style.left = (triggerRect.left - containerRect.left) + 'px';
     overlay.style.top = triggerRect.bottom + 'px';
+    overlay.style.visibility = 'visible';
   }
 }
 

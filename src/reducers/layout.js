@@ -21,6 +21,7 @@ const initialState = Immutable({
   start: null,
   ui: {
     targetOffset: { x: 0, y: 0 },
+    editItem: null,
     dirty: false,
   }
 });

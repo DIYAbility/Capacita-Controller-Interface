@@ -46,6 +46,8 @@ class LayoutTarget extends Component {
   static propTypes = {
     isOver: PropTypes.bool.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
+    onItemEdit: PropTypes.func.isRequired,
+    editItem: PropTypes.string,
     data: PropTypes.object.isRequired,
     drop: PropTypes.object,
   }
@@ -78,7 +80,8 @@ class LayoutTarget extends Component {
           left={ctrl.x}
           top={ctrl.y}
           id={id}
-          placed={true}
+          onEdit={this.props.onItemEdit}
+          editItem={this.props.editItem}
           key={index}
         />
       );

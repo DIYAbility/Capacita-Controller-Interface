@@ -7,3 +7,4 @@ export const UPDATE_TARGET_OFFSET     = 'UPDATE_TARGET_OFFSET';
 export const CHANGE_EDIT_MODE         = 'CHANGE_EDIT_MODE';
 export const CHANGE_DEVICE            = 'CHANGE_DEVICE';
 export const CHANGE_VIEW              = 'CHANGE_VIEW';
+export const EDIT_ITEM                = 'EDIT_ITEM';

@@ -109,6 +109,7 @@ class AppToolbar extends Component {
     const triggerRect = trigger.getBoundingClientRect();
     overlay.style.left = (triggerRect.left + containerRect.left) + 'px';
     overlay.style.top = triggerRect.bottom + 'px';
+    overlay.style.visibility = 'visible';
   }
 }
 

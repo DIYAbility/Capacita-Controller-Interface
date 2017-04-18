@@ -38,7 +38,7 @@ class DraggableControl extends Component {
     top: PropTypes.number,
     scale: PropTypes.number,
     id: PropTypes.string,
-    placed: PropTypes.bool,
+    onEdit: PropTypes.func,
   }
 
   render() {
@@ -58,10 +58,12 @@ class DraggableControl extends Component {
   }
 
   renderButton() {
-    const { placed } = this.props;
-    if (placed) {
+    const { onEdit, editItem } = this.props;
+    if (onEdit) {
+      const editClass = (editItem === this.props.id) ? ' editing' : '';
+      const className = `btn-info${editClass}`;
       return (
-        <Button className="btn-info" onClick={this.onInfoActivate.bind(this)}>
+        <Button className={className} onClick={this.onInfoActivate.bind(this)}>
           <span className="glyphicon glyphicon-info-sign no-margin" />
         </Button>
       );
@@ -70,7 +72,10 @@ class DraggableControl extends Component {
   }
 
   onInfoActivate(event) {
-    console.log(`INFO: ${this.props.id}`);
+    this.props.onEdit({
+      id: this.props.id,
+      target: event.target,
+    });
   }
 
   componentDidMount() {

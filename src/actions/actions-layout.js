@@ -50,3 +50,7 @@ export function changeDevice(value) {
 export function changeView(value) {
   return { type: type.CHANGE_VIEW, value };
 }
+
+export function editItem(value) {
+  return { type: type.EDIT_ITEM, value };
+}
