@@ -3,6 +3,8 @@ import { findDOMNode } from 'react-dom';
 import { FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
 import { updateControl } from '../../actions/actions-layout';
 
+const ALLOWED_REGEX = /^(Shift|Control|Meta|Alt|ArrowLeft|ArrowRight|ArrowUp|ArrowDown|[a-z0-9])$/;
+
 class KeyboardShortcut extends Component {
 
   static propTypes = {
@@ -11,9 +13,13 @@ class KeyboardShortcut extends Component {
     dispatch: PropTypes.func.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+    this.state = { value: '', editing: false };
+  }
+
   render() {
-    // Setting FormControl/input as a controlled input nested inside am
-    // Overlay throws an error on keyboard "Esc"!!!
+    const value = formatKeyCodes(this.state.value);
     return (
       <div className="input-row">
         <form>
@@ -24,8 +30,10 @@ class KeyboardShortcut extends Component {
             <FormControl
               type="text"
               placeholder="Enter shortcut"
-              onFocus={this.onInputFocus.bind(this)}
-              onBlur={this.onInputBlur.bind(this)}
+              value={value}
+              onKeyDown={this.onKeyDown.bind(this)}
+              onKeyUp={this.onKeyUp.bind(this)}
+              onChange={this.onChange.bind(this)}
             />
             <FormControl.Feedback />
             <HelpBlock>...</HelpBlock>
@@ -35,66 +43,62 @@ class KeyboardShortcut extends Component {
     );
   }
 
-  componentDidUpdate() {
-    const { editId, data } = this.props;
+  componentWillReceiveProps(nextProps) {
+    const { editId, data } = nextProps
     const ctrl = data.grid[data.device][editId];
-    if (ctrl) {
-      const value = formatKeyCodes(ctrl.keyboardShortcut || '');
-      console.log('display: ', value);
-      const input = findDOMNode(this).querySelector('input[type="text"');
-      input.value = value;
-    }
+    const value = ctrl ? formatKeyCodes(ctrl.keyboardShortcut) : '';
+    this.state = { value, editing: false };
   }
 
   getValidationState() {
     return null;
   }
 
-  onInputFocus() {
-    window.addEventListener('keydown', this.onKeyDown.bind(this));
-  }
-
-  onInputBlur() {
-    window.removeEventListener('keydown', this.onKeyDown.bind(this));
+  onChange(event) {
+    //
   }
 
   onKeyDown(event) {
-    const regex = /^(Backspace|Delete|Shift|Control|Meta|Alt|ArrowLeft|ArrowRight|ArrowUp|ArrowDown|[a-zA-Z0-9])$/;
-    let key = event.key;
-    if (key === 'Enter') {
-      event.target.blur();
-    } else {
-      if (regex.test(key)) {
-        event.preventDefault();
-        if (key.length === 1) {
-          key = key.toUpperCase();
-        }
-        const { editId, data } = this.props;
-        const ctrl = data.grid[data.device][editId];
-        if (ctrl) {
-          const value = (key === 'Backspace' || key === 'Delete') ?
-            removeLastCode(ctrl.keyboardShortcut) :
-            addKeyCode(ctrl.keyboardShortcut, key);
-          const update = {
-            device: data.device,
-            editId,
-            prop: 'keyboardShortcut',
-            value,
-          };
-          this.props.dispatch(updateControl(update));
-        }
-      }
+    if (/^(Backspace|Delete)$/.test(event.key)) {
+      this.setState({ value: '', editing: false });
+      this.dispatch();
+      event.preventDefault();
+    } else if (ALLOWED_REGEX.test(event.key)) {
+      const currentValue = this.state.editing ? this.state.value : '';
+      const value = addKeyCode(currentValue, event.key);
+      this.setState({ value, editing: true });
+      event.preventDefault();
     }
+  }
+
+  onKeyUp(event) {
+    this.setState({ editing: false });
+    this.dispatch();
+  }
+
+  dispatch() {
+    const { editId, data } = this.props;
+    const ctrl = data.grid[data.device][editId];
+    const update = {
+      device: data.device,
+      editId,
+      prop: 'keyboardShortcut',
+      value: this.state.value,
+    };
+    this.props.dispatch(updateControl(update));
   }
 }
 
 function addKeyCode(shortcut, code) {
-  shortcut = shortcut || '';
-  if (shortcut) {
-    shortcut += ',';
+  const codes = (shortcut || '').split(',');
+  // Shortcuts have max length of 4 and cannot contain duplicate chars.
+  if (/^[a-z]$/.test(code)) {
+    code = code.toUpperCase();
   }
-  shortcut += code;
-  return shortcut;
+  if (codes.indexOf(code) === -1 && codes.length < 4) {
+    codes.push(code);
+  }
+  return codes.filter(item => !!item).join(',');
 }
 
 function removeLastCode(shortcut) {
@@ -143,6 +147,10 @@ function formatKeyCodes(codes) {
     });
   }
   return str;
+}
+
+function codesSorter(a, b) {
+  return 0;
 }
 
 export default KeyboardShortcut;
