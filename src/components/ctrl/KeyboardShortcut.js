@@ -58,7 +58,10 @@ class KeyboardShortcut extends Component {
   }
 
   onKeyDown(event) {
-    if (/^(Backspace|Delete)$/.test(event.key)) {
+    if (/^Enter$/.test(event.key)) {
+      this.dispatch();
+      event.target.blur();
+    } else if (/^(Backspace|Delete)$/.test(event.key)) {
       this.setState({ value: '', editing: false });
       this.dispatch();
       event.preventDefault();
