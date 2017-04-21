@@ -4,7 +4,8 @@ import './OverlayContainer.css';
 class OverlayContainer extends Component {
 
   static propTypes = {
-    overlay: PropTypes.string
+    pointer: PropTypes.string.isRequired,
+    overlay: PropTypes.string,
   }
 
   render() {
@@ -12,7 +13,7 @@ class OverlayContainer extends Component {
     const className = `overlay-container ${overlay}`;
     return (
       <div className={className}>
-        <div className="pointer">
+        <div className={`pointer pointer-${this.props.pointer}`}>
           <div className="inner" />
         </div>
         {this.props.children}

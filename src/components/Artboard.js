@@ -47,7 +47,7 @@ class Artboard extends Component {
         placement="bottom"
         rootClose={true}
         target={() => this.state.editEl}>
-        <OverlayContainer overlay="item-edit">
+        <OverlayContainer overlay="item-edit" pointer="left">
           <p>Ok</p>
         </OverlayContainer>
       </Overlay>

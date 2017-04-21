@@ -77,7 +77,7 @@ class AppToolbar extends Component {
         rootClose={true}
         target={() => ReactDOM.findDOMNode(this.refs.layouts)}
         ref="overlayLayouts">
-        <OverlayContainer overlay="layouts">
+        <OverlayContainer overlay="layouts" pointer="top">
           <LayoutsOverlayList layouts={layouts} />
         </OverlayContainer>
       </Overlay>
