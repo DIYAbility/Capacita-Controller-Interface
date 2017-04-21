@@ -6,7 +6,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import LayoutTarget from '../components/LayoutTarget';
 import DeviceSource from '../components/DeviceSource';
 import ControlDragLayer from '../components/ControlDragLayer';
-import OverlayContainer from './OverlayContainer';
+import CtrlOverlay from './ctrl/CtrlOverlay';
 import './Artboard.css';
 
 class Artboard extends Component {
@@ -39,17 +39,18 @@ class Artboard extends Component {
   }
 
   renderItemEditOverlay() {
+    const { data, dispatch } = this.props;
+    const { editId, editEl } = this.state;
     return (
       <Overlay
-        show={!!this.state.editId}
+        show={!!editId}
         onHide={this.onItemEditOff.bind(this)}
         container={this}
         placement="bottom"
         rootClose={true}
-        target={() => this.state.editEl}>
-        <OverlayContainer overlay="item-edit" pointer="left">
-          <p>Ok</p>
-        </OverlayContainer>
+        keyboard={false}
+        target={() => editEl}>
+        <CtrlOverlay editId={editId} data={data} dispatch={dispatch} />
       </Overlay>
     );
   }

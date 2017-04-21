@@ -35,6 +35,10 @@ export function moveControl(value) {
   return { type: type.MOVE_CONTROL, value };
 }
 
+export function updateControl(update) {
+  return { type: type.UPDATE_CONTROL, update };
+}
+
 export function updateTargetOffset(x, y) {
   return { type: type.UPDATE_TARGET_OFFSET, x, y };
 }

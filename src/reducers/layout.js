@@ -21,7 +21,6 @@ const initialState = Immutable({
   start: null,
   ui: {
     targetOffset: { x: 0, y: 0 },
-    editItem: null,
     dirty: false,
   }
 });
@@ -46,6 +45,9 @@ function LayoutReducer(state = initialState, action) {
       break;
     case type.MOVE_CONTROL:
       state = moveControl(state, action.value);
+      break;
+    case type.UPDATE_CONTROL:
+      state = updateControl(state, action.update);
       break;
     case type.UPDATE_TARGET_OFFSET:
       state = updateTargetOffset(state, action);
@@ -109,6 +111,11 @@ function moveControl(state, move) {
 function getMoveId(device, moves) {
   const id = `${device}-${Date.now()}`;
   return (Object.keys(moves).indexOf(id) === -1) ? id : `${id}x`;
+}
+
+function updateControl(state, update) {
+  return state.setIn(['data', 'grid', update.device, update.editId,
+    update.prop], update.value);
 }
 
 function updateTargetOffset(state, action) {
