@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
 import { FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
 import { updateControl } from '../../actions/actions-layout';
 
-const ALLOWED_REGEX = /^(Shift|Control|Meta|Alt|ArrowLeft|ArrowRight|ArrowUp|ArrowDown|[a-z0-9])$/;
+// const ALLOWED_REGEX = /^(Shift|Control|Meta|Alt|ArrowLeft|ArrowRight|ArrowUp|ArrowDown|[a-z0-9])$/;
 
 class KeyboardShortcut extends Component {
 
@@ -63,9 +62,11 @@ class KeyboardShortcut extends Component {
       this.setState({ value: '', editing: false });
       this.dispatch();
       event.preventDefault();
-    } else if (ALLOWED_REGEX.test(event.key)) {
-      const currentValue = this.state.editing ? this.state.value : '';
-      const value = addKeyCode(currentValue, event.key);
+    // } else if (ALLOWED_REGEX.test(event.key)) {
+    } else if (/^[a-z0-9]$/.test(event.key)) {
+      // const currentValue = this.state.editing ? this.state.value : '';
+      // const value = addKeyCode(currentValue, event.key);
+      const value = event.key.toUpperCase();
       this.setState({ value, editing: true });
       event.preventDefault();
     }
@@ -78,7 +79,6 @@ class KeyboardShortcut extends Component {
 
   dispatch() {
     const { editId, data } = this.props;
-    const ctrl = data.grid[data.device][editId];
     const update = {
       device: data.device,
       editId,
@@ -89,26 +89,26 @@ class KeyboardShortcut extends Component {
   }
 }
 
-function addKeyCode(shortcut, code) {
-  const codes = (shortcut || '').split(',');
-  // Shortcuts have max length of 4 and cannot contain duplicate chars.
-  if (/^[a-z]$/.test(code)) {
-    code = code.toUpperCase();
-  }
-  if (codes.indexOf(code) === -1 && codes.length < 4) {
-    codes.push(code);
-  }
-  return codes.filter(item => !!item).join(',');
-}
+// function addKeyCode(shortcut, code) {
+//   const codes = (shortcut || '').split(',');
+//   // Shortcuts have max length of 4 and cannot contain duplicate chars.
+//   if (/^[a-z]$/.test(code)) {
+//     code = code.toUpperCase();
+//   }
+//   if (codes.indexOf(code) === -1 && codes.length < 4) {
+//     codes.push(code);
+//   }
+//   return codes.filter(item => !!item).join(',');
+// }
 
-function removeLastCode(shortcut) {
-  if (shortcut) {
-    const codes = (shortcut || '').split(',');
-    codes.pop();
-    return codes.join(',');
-  }
-  return '';
-}
+// function removeLastCode(shortcut) {
+//   if (shortcut) {
+//     const codes = (shortcut || '').split(',');
+//     codes.pop();
+//     return codes.join(',');
+//   }
+//   return '';
+// }
 
 function formatKeyCodes(codes) {
   let str = '';
@@ -149,8 +149,8 @@ function formatKeyCodes(codes) {
   return str;
 }
 
-function codesSorter(a, b) {
-  return 0;
-}
+// function codesSorter(a, b) {
+//   return 0;
+// }
 
 export default KeyboardShortcut;

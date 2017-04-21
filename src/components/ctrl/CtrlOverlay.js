@@ -12,7 +12,7 @@ class CtrlOverlay extends Component {
   }
 
   render() {
-    const { pointer, dispatch } = this.props;
+    const { pointer } = this.props;
     return (
       <OverlayContainer overlay="item-edit" pointer={pointer || 'left'}>
         <KeyboardShortcut {...this.props} />
