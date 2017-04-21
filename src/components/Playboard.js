@@ -23,10 +23,8 @@ export default class Playboard extends Component {
       const ctrl = grid[device][id];
       return (
         <PlayItem
-          control={ctrl.name}
+          control={ctrl}
           view={view}
-          left={ctrl.x}
-          top={ctrl.y}
           key={index}
         />
       );
