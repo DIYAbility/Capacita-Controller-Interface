@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import * as device from '../util/device-output';
 import './PlayItem.css';
 
 export default class PlayItem extends Component {
@@ -7,6 +8,7 @@ export default class PlayItem extends Component {
     super(props);
     this.state = { active: false };
     this.onKeyDownBound = this.onKeyDown.bind(this);
+    this.onKeyUpBound = this.onKeyUp.bind(this);
   }
 
   static propTypes = {
@@ -46,22 +48,38 @@ export default class PlayItem extends Component {
   }
 
   onDown(event) {
-    console.log('DOWN');
     window.addEventListener('mouseup', this.onUp.bind(this), false);
-    this.setState({ active: true });
-  }
-
-  onKeyDown(event) {
-    const ks = this.props.control.keyboardShortcut;
-    console.log('onKeyDown()', ks);
-    if (ks && event.key.toUpperCase() === ks) {
-      this.setState({ active: true });
-    }
+    this.press();
   }
 
   onUp(event) {
-    console.log('UP');
     window.removeEventListener('mouseup', this.onUp.bind(this), false);
+    this.release();
+  }
+
+  onKeyDown(event) {
+    if (!this.state.active &&
+        event.key.toUpperCase() === this.props.control.keyboardShortcut) {
+      window.addEventListener('keyup', this.onKeyUpBound);
+      this.press();
+    }
+  }
+
+  onKeyUp(event) {
+    if (this.state.active &&
+        event.key.toUpperCase() === this.props.control.keyboardShortcut) {
+      window.removeEventListener('keyup', this.onKeyUpBound);
+      this.release();
+    }
+  }
+
+  press() {
+    device.press(this.props.control.name);
+    this.setState({ active: true });
+  }
+
+  release() {
+    device.release(this.props.control.name);
     this.setState({ active: false });
   }
 }
