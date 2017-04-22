@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { updateControl } from '../../actions/actions-layout';
 
 // const ALLOWED_REGEX = /^(Shift|Control|Meta|Alt|ArrowLeft|ArrowRight|ArrowUp|ArrowDown|[a-z0-9])$/;
@@ -35,11 +35,11 @@ class KeyboardShortcut extends Component {
               onChange={this.onChange.bind(this)}
             />
             <FormControl.Feedback />
-            <HelpBlock>...</HelpBlock>
           </FormGroup>
         </form>
       </div>
     );
+    // <HelpBlock>...</HelpBlock>
   }
 
   componentWillReceiveProps(nextProps) {
