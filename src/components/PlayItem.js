@@ -9,6 +9,7 @@ export default class PlayItem extends Component {
     this.state = { active: false };
     this.onKeyDownBound = this.onKeyDown.bind(this);
     this.onKeyUpBound = this.onKeyUp.bind(this);
+    this.mounted = false;
   }
 
   static propTypes = {
@@ -39,12 +40,14 @@ export default class PlayItem extends Component {
     if (this.props.control.keyboardShortcut) {
       window.addEventListener('keydown', this.onKeyDownBound);
     }
+    this.mounted = true;
   }
 
   componentWillUnmount() {
     if (this.props.control.keyboardShortcut) {
       window.removeEventListener('keydown', this.onKeyDownBound);
     }
+    this.mounted = false;
   }
 
   onDown(event) {
@@ -74,12 +77,16 @@ export default class PlayItem extends Component {
   }
 
   press() {
-    device.press(this.props.control.name);
-    this.setState({ active: true });
+    if (this.mounted) {
+      device.press(this.props.control.name);
+      this.setState({ active: true });
+    }
   }
 
   release() {
-    device.release(this.props.control.name);
-    this.setState({ active: false });
+    if (this.mounted) {
+      device.release(this.props.control.name);
+      this.setState({ active: false });
+    }
   }
 }

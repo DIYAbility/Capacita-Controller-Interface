@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import OverlayContainer from '../OverlayContainer';
 import KeyboardShortcut from './KeyboardShortcut';
+import HoldFor from './HoldFor';
+import RepeatFor from './RepeatFor';
 import DeleteCtrl from './DeleteCtrl';
+import './CtrlOverlay.css';
 
 class CtrlOverlay extends Component {
 
@@ -17,6 +20,8 @@ class CtrlOverlay extends Component {
     return (
       <OverlayContainer overlay="item-edit" pointer={pointer || 'left'}>
         <KeyboardShortcut {...this.props} />
+        <HoldFor {...this.props} />
+        <RepeatFor {...this.props} />
         <DeleteCtrl {...this.props} />
       </OverlayContainer>
     );
