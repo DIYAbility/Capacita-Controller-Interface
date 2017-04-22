@@ -55,6 +55,17 @@ class Artboard extends Component {
     );
   }
 
+  // If item no longer exists, close the contextual overlay.
+  componentWillReceiveProps(nextProps) {
+    const editId = this.state.editId;
+    if (editId) {
+      const data = nextProps.data;
+      if (!data.grid[data.device][editId]) {
+        this.onItemEditOff();
+      }
+    }
+  }
+
   onItemEditOff() {
     this.setState({ editId: null });
     window.removeEventListener('resize', this.positionItemEditOverlay.bind(this));

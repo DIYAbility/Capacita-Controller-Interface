@@ -3,6 +3,7 @@ export const SAVE_LAYOUT              = 'SAVE_LAYOUT';
 export const FETCH_LAYOUT             = 'FETCH_LAYOUT';
 export const CHANGE_NAME              = 'CHANGE_NAME';
 export const MOVE_CONTROL             = 'MOVE_CONTROL';
+export const DELETE_CONTRL            = 'DELETE_CONTROL';
 export const UPDATE_CONTROL           = 'UPDATE_CONTROL';
 export const UPDATE_TARGET_OFFSET     = 'UPDATE_TARGET_OFFSET';
 export const CHANGE_EDIT_MODE         = 'CHANGE_EDIT_MODE';

@@ -35,6 +35,10 @@ export function moveControl(value) {
   return { type: type.MOVE_CONTROL, value };
 }
 
+export function deleteControl(device, id) {
+  return { type: type.DELETE_CONTRL, device, id };
+}
+
 export function updateControl(update) {
   return { type: type.UPDATE_CONTROL, update };
 }

@@ -46,6 +46,9 @@ function LayoutReducer(state = initialState, action) {
     case type.MOVE_CONTROL:
       state = moveControl(state, action.value);
       break;
+    case type.DELETE_CONTRL:
+      state = deleteControl(state, action.device, action.id);
+      break;
     case type.UPDATE_CONTROL:
       state = updateControl(state, action.update);
       break;
@@ -106,6 +109,11 @@ function moveControl(state, move) {
     y: move.y + offset.y,
   });
   return updateDirty(state);
+}
+
+function deleteControl(state, device, id) {
+  const grid = Immutable.without(state.data.grid[device], id);
+  return state.setIn(['data', 'grid', device], grid);
 }
 
 function getMoveId(device, moves) {
