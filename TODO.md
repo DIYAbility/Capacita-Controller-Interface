@@ -5,7 +5,7 @@
 * Finish help page
 
 x Add play button context menu
-* Make play buttons active
+x Make play buttons active
 
 * Finish layouts dropdown
 

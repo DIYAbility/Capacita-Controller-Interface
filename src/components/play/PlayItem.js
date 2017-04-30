@@ -105,15 +105,21 @@ export default class PlayItem extends Component {
   }
 
   activate() {
-    this.setState({ active: true });
+    if (this.mounted) {
+      this.setState({ active: true });
+    }
   }
 
   deactivate() {
-    this.setState({ active: false });
+    if (this.mounted) {
+      this.setState({ active: false });
+    }
   }
 
   complete() {
-    this.setState({ active: false });
+    if (this.mounted) {
+      this.setState({ active: false });
+    }
     cancelCommand(this.props.control.name);
   }
 }
