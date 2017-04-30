@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { changeName } from '../actions/actions-layout';
+import { changeName } from '../../actions/actions-layout';
 import './LayoutTitle.css';
 
 class LayoutTitle extends Component {

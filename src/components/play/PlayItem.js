@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Command from '../util/Command';
+import Command from '../../util/Command';
 import './PlayItem.css';
 
 const commands = {};

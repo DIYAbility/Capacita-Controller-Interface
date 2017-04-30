@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
-import { DEVICE_CONTROL } from '../constants/drag-types';
 import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
+import { DEVICE_CONTROL } from '../../constants/drag-types';
 import './DraggableControl.css';
 
 const dragCtrlSource = {

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import OverlayContainer from '../OverlayContainer';
+import OverlayContainer from '../app/OverlayContainer';
 import KeyboardShortcut from './KeyboardShortcut';
 import HoldFor from './HoldFor';
 import RepeatFor from './RepeatFor';

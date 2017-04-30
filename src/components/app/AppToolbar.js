@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Navbar, Nav, NavItem, Grid, Overlay } from 'react-bootstrap';
 import OverlayContainer from './OverlayContainer';
-import LayoutsOverlayList from './LayoutsOverlayList';
+import LayoutsOverlayList from '../layout/LayoutsOverlayList';
 // import * as actions from '../actions/actions-app';
 import './AppToolbar.css';
 

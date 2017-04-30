@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { DragDropContext } from 'react-dnd';
 import { Overlay } from 'react-bootstrap';
 import HTML5Backend from 'react-dnd-html5-backend';
-import LayoutTarget from '../components/LayoutTarget';
-import DeviceSource from '../components/DeviceSource';
-import ControlDragLayer from '../components/ControlDragLayer';
-import CtrlOverlay from './ctrl/CtrlOverlay';
+import LayoutTarget from '../layout/LayoutTarget';
+import DeviceSource from '../device/DeviceSource';
+import ControlDragLayer from '../drag/ControlDragLayer';
+import CtrlOverlay from '../ctrl/CtrlOverlay';
 import './Artboard.css';
 
 class Artboard extends Component {

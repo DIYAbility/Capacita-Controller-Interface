@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ReactSuperSimpleRouter from '../components/ReactSuperSimpleRouter';
+import ReactSuperSimpleRouter from '../components/app/ReactSuperSimpleRouter';
+import AppToolbar from '../components/app/AppToolbar';
 import * as page from '../constants/pages';
 import { changeRoute } from '../actions/actions-app';
-import AppToolbar from '../components/AppToolbar';
 import SignIn from '../pages/SignIn';
 import ControllerLayout from '../pages/ControllerLayout';
 import Help from '../pages/Help';

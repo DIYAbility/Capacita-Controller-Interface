@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import LayoutToolbar from '../components/LayoutToolbar';
-import Artboard from '../components/Artboard';
-import Playboard from '../components/Playboard';
+import LayoutToolbar from '../components/layout/LayoutToolbar';
+import Artboard from '../components/layout/Artboard';
+import Playboard from '../components/play/Playboard';
 import { createLayout } from '../actions/actions-layout';
 import './ControllerLayout.css';
 

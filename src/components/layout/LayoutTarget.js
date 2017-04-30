@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import { DropTarget } from 'react-dnd';
-import { DEVICE_CONTROL } from '../constants/drag-types';
-import DraggableControl from '../components/DraggableControl';
-import { moveControl, updateTargetOffset } from '../actions/actions-layout';
+import { DEVICE_CONTROL } from '../../constants/drag-types';
+import DraggableControl from '../drag/DraggableControl';
+import { moveControl, updateTargetOffset } from '../../actions/actions-layout';
 
 const dropTarget = {
   drop(props, monitor, component) {

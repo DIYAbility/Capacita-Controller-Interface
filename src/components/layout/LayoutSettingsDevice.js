@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { ControlLabel, Radio } from 'react-bootstrap';
-import { changeDevice } from '../actions/actions-layout';
+import { changeDevice } from '../../actions/actions-layout';
 
 class LayoutSettingsDevice extends Component {
 

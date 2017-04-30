@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import DraggableControl from '../components/DraggableControl';
+import DraggableControl from '../drag/DraggableControl';
 import './PS4Source.css';
 
 export default class PS4Source extends Component {

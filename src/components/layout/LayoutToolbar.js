@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Navbar, Nav, NavItem, Overlay } from 'react-bootstrap';
-import { changeEditMode, saveLayout } from '../actions/actions-layout';
+import { changeEditMode, saveLayout } from '../../actions/actions-layout';
 import LayoutTitle from './LayoutTitle';
 import LayoutSettingsDevice from './LayoutSettingsDevice';
 import LayoutSettingsView from './LayoutSettingsView';
-import OverlayContainer from './OverlayContainer';
+import OverlayContainer from '../app/OverlayContainer';
 import './LayoutToolbar.css';
 
 class LayoutToolbar extends Component {
