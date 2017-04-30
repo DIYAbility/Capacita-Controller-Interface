@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import * as device from '../util/device-output';
+import Command from '../util/Command';
 import './PlayItem.css';
+
+const commands = {};
 
 export default class PlayItem extends Component {
 
@@ -9,6 +11,7 @@ export default class PlayItem extends Component {
     this.state = { active: false };
     this.onKeyDownBound = this.onKeyDown.bind(this);
     this.onKeyUpBound = this.onKeyUp.bind(this);
+    this.onUpBound = this.onUp.bind(this);
     this.mounted = false;
   }
 
@@ -51,12 +54,12 @@ export default class PlayItem extends Component {
   }
 
   onDown(event) {
-    window.addEventListener('mouseup', this.onUp.bind(this), false);
+    window.addEventListener('mouseup', this.onUpBound, false);
     this.press();
   }
 
   onUp(event) {
-    window.removeEventListener('mouseup', this.onUp.bind(this), false);
+    window.removeEventListener('mouseup', this.onUpBound, false);
     this.release();
   }
 
@@ -78,15 +81,48 @@ export default class PlayItem extends Component {
 
   press() {
     if (this.mounted) {
-      device.press(this.props.control.name);
-      this.setState({ active: true });
+      const ctrl = this.props.control;
+      if (commands[ctrl.name]) {
+        cancelCommand(ctrl.name);
+      }
+      commands[ctrl.name] = new Command({
+        ctrl, 
+        activate: this.activate.bind(this), 
+        deactivate: this.deactivate.bind(this),
+        complete: this.complete.bind(this), 
+      });
+      commands[ctrl.name].start();
     }
   }
 
   release() {
     if (this.mounted) {
-      device.release(this.props.control.name);
-      this.setState({ active: false });
+      const ctrl = this.props.control;
+      if (commands[ctrl.name]) {
+        commands[ctrl.name].stop();
+      }
     }
+  }
+
+  activate() {
+    this.setState({ active: true });
+  }
+
+  deactivate() {
+    this.setState({ active: false });
+  }
+
+  complete() {
+    this.setState({ active: false });
+    cancelCommand(this.props.control.name);
+  }
+}
+
+// @param name Id of the controller button
+function cancelCommand(name) {
+  if (commands[name]) {
+    const cmd = commands[name];
+    delete commands[name];
+    cmd.destroy();
   }
 }

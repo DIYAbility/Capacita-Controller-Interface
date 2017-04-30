@@ -20,6 +20,7 @@ class DeviceSource extends Component {
       offsetY: 0,
       device: null,
     };
+    this.mounted = false;
   }
 
   render() {
@@ -54,11 +55,13 @@ class DeviceSource extends Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
     this.writeScale();
     window.addEventListener('resize', this.writeScale.bind(this));
   }
 
   componentWillUnmount() {
+    this.mounted = false;
     window.removeEventListener('resize', this.writeScale.bind(this));
   }
 
@@ -68,7 +71,9 @@ class DeviceSource extends Component {
     if (d1 !== d2) {
       setTimeout(() => {
         this.setState({ device: d2 });
-        this.writeScale();
+        if (this.mounted) {
+          this.writeScale();
+        }
       }, 1);
     }
   }
