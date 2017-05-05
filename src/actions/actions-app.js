@@ -8,6 +8,7 @@ export function changeRoute(route) {
 export function signin(username, password) {
   return dispatch => {
     dispatch({ type: type.SIGN_IN, status: 'start' });
+    console.log("action signin","start")
     api.signin(username, password).then(data => {
       dispatch({ type: type.SIGN_IN, status: 'complete', data });
     }).catch(error => {

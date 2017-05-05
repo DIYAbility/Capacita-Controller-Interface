@@ -9,7 +9,11 @@ class SignIn extends Component {
     return (
       <div className="page">
         <PageHeader>Sign In</PageHeader>
+        <form>
+        <p><label>Email: <input type="email" /></label></p>
+        <p><label>Password: <input type="password" /></label></p>
         <Button bsStyle="primary" onClick={this.onSignIn.bind(this)}>Sign In</Button>
+        </form>
       </div>
     );
   }
