@@ -5,7 +5,6 @@ import AppToolbar from '../components/app/AppToolbar';
 import * as page from '../constants/pages';
 import { changeRoute } from '../actions/actions-app';
 import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
 import ControllerLayout from '../pages/ControllerLayout';
 import Help from '../pages/Help';
 import Account from '../pages/Account';
@@ -36,8 +35,6 @@ class App extends Component {
     switch (this.props.app.route[0]) {
       case page.SIGNIN:
         return <SignIn />;
-      case page.SIGNUP:
-        return <SignUp />;
       case page.LAYOUT:
         return <ControllerLayout />;
       case page.HELP:

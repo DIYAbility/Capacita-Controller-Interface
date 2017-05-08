@@ -5,13 +5,13 @@ export function changeRoute(route) {
   return { type: type.CHANGE_ROUTE, route };
 }
 
-export function createAccount(name, email, password) {
+export function signUp(name, email, password) {
   return  dispatch => {
-    dispatch({ type: type.CREATE_ACCOUNT, status: 'start'});
-    api.createAccount(name, email, password).then(data => {
+    dispatch({ type: type.SIGN_UP, status: 'start'});
+    api.signup(name, email, password).then(data => {
       dispatch({ type: type.SIGN_IN, status: 'complete', data});
     }).catch(error => {
-      dispatch({ type: type.CREATE_ACCOUNT, status:'error', error});
+      dispatch({ type: type.SIGN_UP, status:'error', error});
     })
   }
 }
