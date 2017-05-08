@@ -3,3 +3,4 @@ export const LAYOUT     = 'layout';
 export const HELP       = 'help';
 export const ACCOUNT    = 'account';
 export const NOT_FOUND  = 'notfound';
+export const SIGNUP		= 'signup';
