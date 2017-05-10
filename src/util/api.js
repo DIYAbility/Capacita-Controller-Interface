@@ -1,4 +1,8 @@
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from './firebaseUtil';
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  getUserData
+} from './firebaseUtil';
 
 export function saveLayout(data) {
   return new Promise((resolve, reject) => {
@@ -25,11 +29,13 @@ export function fetchLayout(id) {
 
 export function signup(name, email, password) {
   return new Promise((resolve, reject) => {
-    console.log('inside signup', name, email, password);
-    createUserWithEmailAndPassword(email, password).then(user => {
-      console.log('got new user', user);
-      resolve(user);
-    }).catch(function(error) {
+    createUserWithEmailAndPassword(name, email, password)
+    .then(getUserData)
+    .then(function(userData) {
+      console.log('firebase user / layout data', userData)
+      resolve(userData)
+    })
+    .catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -40,7 +46,7 @@ export function signup(name, email, password) {
 
 export function signin(username, password) {
   return new Promise((resolve, reject) => {
-    
+
 
 
     // fetch('tmp/user.json').then(resp => {

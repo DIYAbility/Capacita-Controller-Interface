@@ -9,38 +9,94 @@ var config = {
       };
 firebase.initializeApp(config);
 
-// var provider = new firebase.auth.GoogleAuthProvider();
-// provider.addScope('https://www.googleapis.com/auth/plus.login');
+// Get a reference to the database service
+var database = firebase.database();
+
+function createLayout(layoutData) {
+  return new Promise((resolve, reject) => {
+    var userId = firebase.auth().currentUser.uid;
+    if (userId != null) {
+
+      // Get a key for a new Layout.
+      var newLayoutKey = firebase.database().ref('layouts/' + userId).push().key;
+
+      // where do we need to write data? put all paths and data in updates obj
+      var updates = {};
+      updates['/layouts/' + userId + '/' + newLayoutKey] = layoutData;
+
+      // write to database
+      resolve(firebase.database().ref().update(updates));
+    } else {
+      var err =  new Error('no user logged in');
+      reject(err);
+    }
+  })
+
+}
+
+function getLayouts() {
+  return new Promise((resolve, reject) => {
+    var userId = firebase.auth().currentUser.uid;
+    if (userId != null) {
+      firebase.database().ref('/layouts/' + userId).once('value').then(function(layouts) {
+        resolve(layouts.val());
+      });
+
+    } else {
+      var err =  new Error('no user logged in');
+      console.error(err);
+      reject(err);
+    }
+  });
+}
 
 
-export function getUserAndLayouts() {
-	var user = firebase.auth().currentUser;
+function getLayout(user, layoutId) {
 
-	if (user) {
-		console.log("user", user);
-		return {
-		  "name": user.displayName,
-		  "image": null,
-		  "layouts": {
-		    "layout-abc": { "name": "Layout ABC", "device": "xbox", "active": true },
-		    "layout-efg": { "name": "Layout EFG", "device": "xbox" },
-		    "layout-hij": { "name": "Layout HIJ", "device": "ps4" }
-		  }
-		}
+}
 
-	} else {
-		return null;
-	}
+
+export function getUserData() {
+  return new Promise((resolve, reject) => {
+    var user = firebase.auth().currentUser;
+    if (user != null) {
+      console.log('trying to get userdata',user);
+
+      getLayouts().then(layouts => {
+        var data = {
+          'name': user.diplayName,
+          'email': user.email,
+          'image': null,
+          'layouts': layouts
+        };
+        resolve(data);
+
+      }).catch(function(err) {
+        console.err("unable to fetch layouts", err)
+        reject(err);
+      })
+    } else {
+      var err =  new Error('no user logged in');
+      reject(err);
+    }
+  })
+
 }
 
 export function createUserWithEmailAndPassword(name, email, password) {
 	return new Promise((resolve, reject) => {
-		
+		console.log('firebaseUtil createUser', name, email, password)
 		firebase.auth().createUserWithEmailAndPassword(email, password).then(sucess => {
 			var user = firebase.auth().currentUser;
 			user.updateProfile({
 			  displayName: name,
-			}).then(function() {
+			})
+      .then(function() {
+        // create new layout
+        var layoutData = { "name": "Layout ABC", "device": "xbox", "active": true };
+        createLayout(layoutData);
+      })
+      .then(function() {
 				resolve(firebase.auth().currentUser);
 			}, function(error) {
 			  console.error('error update user profile', user);
@@ -48,9 +104,13 @@ export function createUserWithEmailAndPassword(name, email, password) {
 		}).catch(error => {
 			console.error('error on create with email/password', error);
 			reject(error);
-		});	
+		});
 	})
-	
+
+  /*
+
+  */
+
 }
 
 export function signInWithEmailAndPassword(email, password) {

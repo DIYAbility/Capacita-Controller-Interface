@@ -11,14 +11,13 @@ class SignIn extends Component {
       email: '',
       password: ''
     };
-    
+
     this.signUp = this.onCreateAcct;
     this.handleChange = this.handleChange.bind(this);
-    
+
   }
 
   handleChange({ target }) {
-    console.log("handle", target.value)
     this.setState({
       [target.name]: target.value
     });
@@ -40,7 +39,7 @@ class SignIn extends Component {
           <p><label>Name: <input type="text" name="name" value={ this.state.name } onChange={ this.handleChange } /></label></p>
           <p><label>Email: <input type="email" name="email"  value={ this.state.email } onChange={ this.handleChange } /></label></p>
           <p><label>Password: <input type="password" name="password"  value={ this.state.password } onChange={ this.handleChange } /></label></p>
-          <Button bsStyle="primary" onClick={ this.signUp }>Sign Up</Button>
+          <Button bsStyle="primary" onClick={ this.signUp.bind(this) }>Sign Up</Button>
           </form>
         </div>
       </div>
@@ -66,7 +65,7 @@ class SignIn extends Component {
   }
 
   onCreateAcct() {
-    this.props.dispatch(signUp());
+    this.props.dispatch(signUp(this.state.name, this.state.email, this.state.password));
   }
 }
 
