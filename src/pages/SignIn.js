@@ -28,8 +28,8 @@ class SignIn extends Component {
       <div className="page">
         <PageHeader>Sign In</PageHeader>
         <form>
-        <p><label>Email: <input type="email" /></label></p>
-        <p><label>Password: <input type="password" /></label></p>
+        <p><label>Email: <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange }/></label></p>
+        <p><label>Password: <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange }  /></label></p>
         <Button bsStyle="primary" onClick={this.onSignIn.bind(this)}>Sign In</Button>
         </form>
         <hr />
@@ -61,7 +61,7 @@ class SignIn extends Component {
   }
 
   onSignIn() {
-    this.props.dispatch(signin());
+    this.props.dispatch(signin(this.state.email, this.state.password));
   }
 
   onCreateAcct() {

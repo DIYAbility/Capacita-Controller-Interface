@@ -46,9 +46,21 @@ export function signup(name, email, password) {
   });
 }
 
-export function signin(username, password) {
+export function signin(email, password) {
   return new Promise((resolve, reject) => {
-
+    signInWithEmailAndPassword(email, password)
+    .then(getUserData)
+    .then(function(userData) {
+      console.log('sign in user', userData)
+      resolve(userData)
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.error(error);
+      reject(error)
+    });
 
 
     // fetch('tmp/user.json').then(resp => {

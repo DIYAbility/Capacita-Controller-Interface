@@ -16,11 +16,11 @@ export function signUp(name, email, password) {
   }
 }
 
-export function signin(username, password) {
+export function signin(email, password) {
   return dispatch => {
     dispatch({ type: type.SIGN_IN, status: 'start' });
-    console.log("action signin","start")
-    api.signin(username, password).then(data => {
+    console.log("action signin","start", email, password)
+    api.signin(email, password).then(data => {
       dispatch({ type: type.SIGN_IN, status: 'complete', data });
     }).catch(error => {
       dispatch({ type: type.SIGN_IN, status: 'error', error });
