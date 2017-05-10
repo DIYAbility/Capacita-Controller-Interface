@@ -64,7 +64,7 @@ export function getUserData() {
 
       getLayouts().then(layouts => {
         var data = {
-          'name': user.diplayName,
+          'name': user.displayName,
           'email': user.email,
           'image': null,
           'layouts': layouts

@@ -6,13 +6,15 @@ import {
 
 export function saveLayout(data) {
   return new Promise((resolve, reject) => {
-    data.id = 'abcdefg';
+    // data.id = 'abcdefg';
+    console.log('layout data',data)
     resolve(data);
   });
 }
 
 export function fetchLayout(id) {
   return new Promise((resolve, reject) => {
+    console.log('fetchlayout', id)
     fetch('tmp/layout.json').then(resp => {
       resp.json().then(layout => {
         console.log(layout)
@@ -30,7 +32,7 @@ export function fetchLayout(id) {
 export function signup(name, email, password) {
   return new Promise((resolve, reject) => {
     createUserWithEmailAndPassword(name, email, password)
-    .then(getUserData)
+    .then(getUserData) // get user and layouts
     .then(function(userData) {
       console.log('firebase user / layout data', userData)
       resolve(userData)
