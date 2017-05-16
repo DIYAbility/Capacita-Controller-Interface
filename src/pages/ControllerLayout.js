@@ -45,6 +45,10 @@ class ControllerLayout extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
+    console.log('props',this.props)
+    if (this.props.app.route.length == 2) {
+      alert(this.props.app.route[1]);
+    }
     dispatch(createLayout());
   }
 }

@@ -18,6 +18,7 @@ export function saveLayout(value) {
 
 export function fetchLayout(value) {
   return dispatch => {
+    console.log('fetchLayout',value)
     dispatch({ type: type.FETCH_LAYOUT, status: 'start' });
     api.fetchLayout(value).then(data => {
       dispatch({ type: type.FETCH_LAYOUT, status: 'complete', data });
