@@ -51,8 +51,21 @@ function getLayouts() {
 }
 
 
-function getLayout(user, layoutId) {
+export function getLayout(layoutId) {
+  return new Promise((resolve, reject) => {
+    var userId = firebase.auth().currentUser.uid;
 
+    if (userId != null && layoutId != null) {
+      firebase.database().ref('/layouts/' + userId + '/' + layoutId).once('value').then(function(layout) {
+        resolve(layout.val());
+      });
+
+    } else {
+      var err =  new Error('no user logged in');
+      console.error(err);
+      reject(err);
+    }
+  });
 }
 
 
