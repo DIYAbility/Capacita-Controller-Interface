@@ -39,7 +39,9 @@ class SignIn extends Component {
               placeholder="Name"
               value={name}
               name="name"
+              help="AAAAHHHhhh!!!!"
               onChange={this.onChange}
+              validationState="error"
             />
             <FieldGroup
               id="signUpEmail"
@@ -49,6 +51,8 @@ class SignIn extends Component {
               value={email}
               name="email"
               onChange={this.onChange}
+              validationState="warning"
+              help="Invalid"
             />
             <FieldGroup
               id="signUpPassword"
@@ -58,6 +62,8 @@ class SignIn extends Component {
               value={password}
               name="password"
               onChange={this.onChange}
+              validationState="success"
+              help="good job"
             />
             <Button
               type="submit"
@@ -88,6 +94,7 @@ class SignIn extends Component {
               value={existPassword}
               name="existPassword"
               onChange={this.onChange}
+              
             />
             <Button
               type="submit"
@@ -126,6 +133,7 @@ class SignIn extends Component {
   onSignUp() {
     this.props.dispatch(signUp(this.state.name, this.state.email, this.state.password));
   }
+  
 }
 
 const mapStateToProps = (state, props) => {
@@ -133,3 +141,4 @@ const mapStateToProps = (state, props) => {
 }
 
 export default connect(mapStateToProps)(SignIn);
+
