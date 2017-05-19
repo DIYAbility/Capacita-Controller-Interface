@@ -106,7 +106,29 @@ export function createUserWithEmailAndPassword(name, email, password) {
 			})
       .then(function() {
         // create new layout
-        var layoutData = { "name": "Layout ABC", "device": "xbox", "active": true };
+        var layoutData = {
+          "name": "Layout ABC",
+          "device": "xbox",
+          "view": "wireframe",
+          "mode": "edit",
+          "grid": {
+            "xbox": {
+              "xbox-1": {
+                "name": "XboxTriggerLeft",
+                "x": 100,
+                "y": 100
+              },
+              "xbox-2": {
+                "name": "XboxBumperLeft",
+                "x": 100,
+                "y": 300
+              }
+            },
+            "ps4": {}
+          }
+        };
+
+        // var layoutData = { "name": "Layout ABC", "device": "xbox", "active": true };
         createLayout(layoutData);
       })
       .then(function() {
