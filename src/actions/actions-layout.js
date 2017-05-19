@@ -1,7 +1,10 @@
 import * as type from '../constants/actions-layout';
 import * as api from '../util/api';
 
-export function createLayout() {
+export function createLayout(layoutId) {
+  if (layoutId) {
+    return fetchLayout(layoutId);
+  }
   return { type: type.CREATE_LAYOUT };
 }
 

@@ -44,17 +44,13 @@ class ControllerLayout extends Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    console.log('props',this.props)
-    if (this.props.app.route.length == 2) {
-      alert(this.props.app.route[1]);
-    }
-    dispatch(createLayout());
+    const { dispatch, route } = this.props;
+    dispatch(createLayout(route[1]));
   }
 }
 
 const mapStateToProps = (state, props) => {
-  return state.layout
+  return Object.assign({}, state.layout, { route: state.app.route });
 }
 
 export default connect(mapStateToProps)(ControllerLayout);
