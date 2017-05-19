@@ -1,0 +1,8 @@
+.form-group.field-group {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.field-group label.control-label {
+  display: block;
+}
