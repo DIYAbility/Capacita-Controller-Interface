@@ -6772,3 +6772,6 @@ button.close {
 label {
   font-weight: normal;
 }
+.help-block.danger {
+  color: #d9534f;
+}
