@@ -1,31 +1,46 @@
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  getUserData
+  getUserData,
+  getLayout,
+  firebaseSaveLayout
 } from './firebaseUtil';
 
 export function saveLayout(data) {
   return new Promise((resolve, reject) => {
     // data.id = 'abcdefg';
-    console.log('layout data',data)
-    resolve(data);
+    console.log('saving data in api.js', data.id, data)
+    firebaseSaveLayout(data.id, data).then(updates => {
+      if (updates) {
+        resolve(data);
+      }
+    }).catch(error => {
+      reject(error);
+    });
+    // console.log('layout data',data)
+    // resolve(data);
   });
 }
 
 export function fetchLayout(id) {
   return new Promise((resolve, reject) => {
-    console.log('fetchlayout', id)
-    fetch('tmp/layout.json').then(resp => {
-      resp.json().then(layout => {
-        console.log(layout)
-        resolve(layout)
-      }).catch(error => {
-        console.log(error)
-        reject(error);
-      });
+    getLayout(id).then(layoutData => {
+      resolve(layoutData);
     }).catch(error => {
+      console.log(error)
       reject(error);
     });
+    // fetch('tmp/layout.json').then(resp => {
+    //   resp.json().then(layout => {
+    //     console.log(layout)
+    //     resolve(layout)
+    //   }).catch(error => {
+    //     console.log(error)
+    //     reject(error);
+    //   });
+    // }).catch(error => {
+    //   reject(error);
+    // });
   });
 }
 

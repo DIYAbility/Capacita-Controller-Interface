@@ -10,24 +10,33 @@ var config = {
 firebase.initializeApp(config);
 
 // Get a reference to the database service
-var database = firebase.database();
+// var database = firebase.database();
 
-function createLayout(layoutData) {
+export function firebaseSaveLayout(layoutId, layoutData) {
   return new Promise((resolve, reject) => {
+    console.log('in firebase save');
     var userId = firebase.auth().currentUser.uid;
     if (userId != null) {
 
       // Get a key for a new Layout.
-      var newLayoutKey = firebase.database().ref('layouts/' + userId).push().key;
-
+      if (layoutId == null) {
+        layoutId = firebase.database().ref('layouts/' + userId).push().key;
+      }
       // where do we need to write data? put all paths and data in updates obj
       var updates = {};
-      updates['/layouts/' + userId + '/' + newLayoutKey] = layoutData;
-
+      updates['/layouts/' + userId + '/' + layoutId] = layoutData;
+      console.log('firebase save layout', updates)
       // write to database
-      resolve(firebase.database().ref().update(updates));
+      try {
+        console.log('firebase updating....')
+        resolve(firebase.database().ref().update(updates));
+      } catch (e) {
+        reject(e);
+      }
+
     } else {
       var err =  new Error('no user logged in');
+      console.error('firebase unable to save no user');
       reject(err);
     }
   })
@@ -57,7 +66,10 @@ export function getLayout(layoutId) {
 
     if (userId != null && layoutId != null) {
       firebase.database().ref('/layouts/' + userId + '/' + layoutId).once('value').then(function(layout) {
-        resolve(layout.val());
+        console.log('firebase util getLayout', layout)
+        var layoutData = layout.val();
+        layoutData.id = layoutId;
+        resolve(layoutData);
       });
 
     } else {
@@ -129,7 +141,7 @@ export function createUserWithEmailAndPassword(name, email, password) {
         };
 
         // var layoutData = { "name": "Layout ABC", "device": "xbox", "active": true };
-        createLayout(layoutData);
+        firebaseSaveLayout(null, layoutData);
       })
       .then(function() {
 				resolve(firebase.auth().currentUser);
