@@ -43,6 +43,21 @@ export function fetchLayout(id) {
     // });
   });
 }
+export function getCurrentUser(email, password) {
+  return new Promise((resolve, reject) => {
+    getUserData().then(function(userData) {
+      console.log('get current user', userData)
+      resolve(userData)
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.error(error);
+      reject(error)
+    });
+  })
+}
 
 export function signup(name, email, password) {
   return new Promise((resolve, reject) => {

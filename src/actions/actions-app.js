@@ -17,6 +17,7 @@ export function signUp(name, email, password) {
 }
 
 export function signin(email, password) {
+
   return dispatch => {
     dispatch({ type: type.SIGN_IN, status: 'start' });
     console.log("action signin","start", email, password)
@@ -27,6 +28,23 @@ export function signin(email, password) {
     });
   }
 }
+
+export function getCurrentUser() {
+  return dispatch => {
+    console.log('ok dispatcher')
+    // dispatch({ type: type.SIGN_IN, status: 'start' });
+    api.getCurrentUser().then(userData => {
+      console.log("getting current user in action-app.js", userData)
+      dispatch({ type: type.SIGN_IN, status:'complete', userData})
+    }).catch(error => {
+      console.error(error)
+      dispatch({ type: type.SIGN_IN, status:'error', error});
+    });
+
+
+  }
+}
+
 
 export function selectLayout(value) {
   return { type: type.SELECT_LAYOUT, value };

@@ -32,7 +32,9 @@ function signinUser(state, action) {
     // Display error message.
   } else if (action.status === 'complete') {
     state = state.set('user', action.data);
+    console.log("signIn complete ", state, action)
   }
+  console.log('signinUser reducer', state)
   return state;
 }
 

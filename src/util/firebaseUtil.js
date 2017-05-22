@@ -1,4 +1,6 @@
 import * as firebase from 'firebase';
+import * as type from '../constants/actions-app';
+import store from '../store'
 var config = {
         apiKey: "AIzaSyCeAmSVsGvFaqA-KBv2z9aEK1WmzhD642c",
         authDomain: "diyability-capacita.firebaseapp.com",
@@ -9,6 +11,23 @@ var config = {
       };
 firebase.initializeApp(config);
 
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    store.dispatch({ type: type.SIGN_IN, status: 'start' });
+    getUserData().then(userData => {
+
+      store.dispatch({ type: type.SIGN_IN, status: 'complete', data:userData});
+    }).catch(error => {
+      console.error('auth state change error', error);
+    })
+
+
+    // User is signed in.
+  } else {
+    // No user is signed in.
+    console.log('firebase auth','user logged out');
+  }
+});
 // Get a reference to the database service
 // var database = firebase.database();
 

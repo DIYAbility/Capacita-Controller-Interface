@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ReactSuperSimpleRouter from '../components/app/ReactSuperSimpleRouter';
 import AppToolbar from '../components/app/AppToolbar';
 import * as page from '../constants/pages';
-import { changeRoute } from '../actions/actions-app';
+import { changeRoute, getCurrentUser } from '../actions/actions-app';
 import SignIn from '../pages/SignIn';
 import ControllerLayout from '../pages/ControllerLayout';
 import Help from '../pages/Help';
@@ -12,6 +12,10 @@ import NotFound from '../pages/NotFound';
 import './App.css';
 
 class App extends Component {
+  componentWillMount() {
+    console.log("will mount?")
+    // this.props.dispatch(getCurrentUser());
+  }
 
   render() {
     return (
