@@ -17,21 +17,19 @@ firebase.initializeApp(config);
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     store.dispatch({ type: type.SIGN_IN, status: 'start' });
-    getUserData().then(userData => {
 
+    getUserData().then(userData => {
       store.dispatch({ type: type.SIGN_IN, status: 'complete', data:userData});
 
       // switch to first layout
       var layoutIds = Object.keys(userData.layouts);
       if (layoutIds.length >= 1) {
         window.location.href="#layout/"+layoutIds[0];
-        // store.dispatch(changeRoute(['layout',layoutIds[0]]));
       }
 
     }).catch(error => {
       console.error('auth state change error', error);
-    })
-
+    });
 
     // User is signed in.
   } else {
