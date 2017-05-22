@@ -1,6 +1,9 @@
 import * as firebase from 'firebase';
+import { changeRoute } from '../actions/actions-app';
 import * as type from '../constants/actions-app';
-import store from '../store'
+import store from '../store';
+
+
 var config = {
         apiKey: "AIzaSyCeAmSVsGvFaqA-KBv2z9aEK1WmzhD642c",
         authDomain: "diyability-capacita.firebaseapp.com",
@@ -17,6 +20,13 @@ firebase.auth().onAuthStateChanged(function(user) {
     getUserData().then(userData => {
 
       store.dispatch({ type: type.SIGN_IN, status: 'complete', data:userData});
+
+      // switch to first layout
+      var layoutIds = Object.keys(userData.layouts);
+      if (layoutIds.length >= 1) {
+        store.dispatch(changeRoute(['layout',layoutIds[0]]));
+      }
+
     }).catch(error => {
       console.error('auth state change error', error);
     })
