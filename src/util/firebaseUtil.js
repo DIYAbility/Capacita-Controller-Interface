@@ -24,7 +24,8 @@ firebase.auth().onAuthStateChanged(function(user) {
       // switch to first layout
       var layoutIds = Object.keys(userData.layouts);
       if (layoutIds.length >= 1) {
-        store.dispatch(changeRoute(['layout',layoutIds[0]]));
+        window.location.href="#layout/"+layoutIds[0];
+        // store.dispatch(changeRoute(['layout',layoutIds[0]]));
       }
 
     }).catch(error => {

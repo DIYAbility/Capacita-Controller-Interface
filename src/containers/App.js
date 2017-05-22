@@ -28,7 +28,6 @@ class App extends Component {
   }
 
   onRouteChange(route) {
-    console.log('route change', route)
     this.props.dispatch(changeRoute(route));
   }
 
