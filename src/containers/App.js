@@ -42,7 +42,7 @@ class App extends Component {
       case page.ACCOUNT:
         return <Account />;
       default:
-        return <NotFound />;
+        return <SignIn />;
     }
   }
 }
