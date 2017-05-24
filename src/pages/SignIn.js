@@ -118,13 +118,12 @@ class SignIn extends Component {
 
   changePage(user) {
     if (user) {
-      window.location = '#testing';
       // navigate to first layout
       var layoutIds = Object.keys(user.layouts);
       if (layoutIds.length >= 1) {
         window.location = '#layout/' + layoutIds[0];
       }
-      
+
     }
   }
 
