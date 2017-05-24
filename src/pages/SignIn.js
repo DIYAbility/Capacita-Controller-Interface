@@ -94,7 +94,7 @@ class SignIn extends Component {
               value={existPassword}
               name="existPassword"
               onChange={this.onChange}
-              
+
             />
             <Button
               type="submit"
@@ -118,7 +118,13 @@ class SignIn extends Component {
 
   changePage(user) {
     if (user) {
-      window.location = '#account';
+      window.location = '#testing';
+      // navigate to first layout
+      var layoutIds = Object.keys(user.layouts);
+      if (layoutIds.length >= 1) {
+        window.location = '#layout/' + layoutIds[0];
+      }
+      
     }
   }
 
@@ -136,7 +142,7 @@ class SignIn extends Component {
     e.preventDefault();
     this.props.dispatch(signUp(this.state.name, this.state.email, this.state.password));
   }
-  
+
 }
 
 const mapStateToProps = (state, props) => {
@@ -144,4 +150,3 @@ const mapStateToProps = (state, props) => {
 }
 
 export default connect(mapStateToProps)(SignIn);
-
