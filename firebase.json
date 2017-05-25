@@ -1,6 +1,13 @@
 {
   "hosting": {
     "public": "build",
+    "redirects": [
+      {
+        "source": "/public/fonts/:font*",
+        "destination": "/fonts/:font*",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
